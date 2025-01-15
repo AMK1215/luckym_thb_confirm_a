@@ -16,6 +16,8 @@ use App\Http\Controllers\Api\V1\Player\WithDrawController;
 use App\Http\Controllers\Api\V1\PromotionController;
 use App\Http\Controllers\Api\V1\Slot\GameController;
 use App\Http\Controllers\Api\V1\Slot\GetDaySummaryController;
+use App\Http\Controllers\Api\V1\Slot\GetGameListByProviderController;
+use App\Http\Controllers\Api\V1\Slot\GetGameProviderController;
 use App\Http\Controllers\Api\V1\Slot\LaunchGameController;
 use App\Http\Controllers\Api\V1\Webhook\AdjustmentController;
 use App\Http\Controllers\Api\V1\Webhook\BetController;
@@ -27,10 +29,6 @@ use App\Http\Controllers\Api\V1\Webhook\RewardController;
 use App\Http\Controllers\TestController;
 use App\Models\Admin\Role;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\Slot\GetGameProviderController;
-use App\Http\Controllers\Api\V1\Slot\GetGameListByProviderController;
-
-
 
 //auth api
 Route::post('/login', [AuthController::class, 'login']);
@@ -51,7 +49,6 @@ Route::post('Adjustment', [AdjustmentController::class, 'handleAdjustment']);
 Route::post('Reward', [RewardController::class, 'handleReward']);
 Route::post('GetGameProvider', [GetGameProviderController::class, 'fetchGameProviders']);
 Route::post('GetGameListByProvider', [GetGameListByProviderController::class, 'fetchGameListByProvider']);
-
 
 // for slot
 Route::post('/transaction-details/{tranId}', [GetDaySummaryController::class, 'getTransactionDetails']);

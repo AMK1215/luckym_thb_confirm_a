@@ -149,7 +149,7 @@ class GameTypeProductTableSeeder extends Seeder
                 'rate' => '1.0000',
             ],
 
-             [
+            [
                 'product_id' => 22,  // FUNTA
                 'game_type_id' => 2,  // Arcade
                 'image' => 'big_time_gaming.webp',
@@ -163,14 +163,14 @@ class GameTypeProductTableSeeder extends Seeder
                 'rate' => '1.0000',
             ],
 
-             [
+            [
                 'product_id' => 24,  // FUNTA
                 'game_type_id' => 6,  // Arcade
                 'image' => 'Evolotion.png',
                 'rate' => '1.0000',
             ],
 
-             [
+            [
                 'product_id' => 25,  // FUNTA
                 'game_type_id' => 6,  // Arcade
                 'image' => 'sa_gamin_casino.webp',

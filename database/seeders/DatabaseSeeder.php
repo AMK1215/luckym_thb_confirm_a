@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             BigTimeGamingSeeder::class,
             NoLimitCitySeeder::class,
             EvolutionSeeder::class,
-            SAGamingSeeder::class
+            SAGamingSeeder::class,
 
         ]);
 
