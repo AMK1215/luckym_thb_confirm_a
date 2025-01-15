@@ -24,30 +24,30 @@ class GetGameProviderController extends Controller
     $response = $this->getGameProviderService->getGameProvider();
 
     // Explicitly log and check the response
-    Log::info('API Response Structure', ['response' => $response]);
+    //Log::info('API Response Structure', ['response' => $response]);
 
     // Check for status and GameProviders key
-    if (is_array($response) && isset($response['status']) && $response['status'] == 200) {
-        if (isset($response['GameProviders']) && is_array($response['GameProviders'])) {
-            Log::info('GameProviders Data', ['data' => $response['GameProviders']]);
-            return response()->json([
-                'success' => true,
-                'data' => $response['GameProviders'],
-            ]);
-        }
+    // if (is_array($response) && isset($response['status']) && $response['status'] == 200) {
+    //     if (isset($response['GameProviders']) && is_array($response['GameProviders'])) {
+    //         Log::info('GameProviders Data', ['data' => $response['GameProviders']]);
+    //         return response()->json([
+    //             'success' => true,
+    //             'data' => $response['GameProviders'],
+    //         ]);
+    //     }
 
         // Handle missing GameProviders data
-        return response()->json([
-            'success' => false,
-            'message' => 'GameProviders data is missing or invalid',
-        ], 400);
-    }
+    //     return response()->json([
+    //         'success' => false,
+    //         'message' => 'GameProviders data is missing or invalid',
+    //     ], 400);
+    // }
 
     // Handle general API error
     return response()->json([
-        'success' => false,
-        'message' => $response['Description'] ?? 'An unknown error occurred',
-    ], 400);
+            'success' => true,
+            'data' => $response['GameProviders'] ?? [],
+        ]);
 }
 
 
