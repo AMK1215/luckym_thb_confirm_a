@@ -127,6 +127,55 @@ class GameTypeProductTableSeeder extends Seeder
                 'image' => 'simple_play.png',
                 'rate' => '1.0000',
             ],
+
+            [
+                'product_id' => 19,  // FUNTA
+                'game_type_id' => 2,  // Arcade
+                'image' => 'wf_gaming.webp',
+                'rate' => '1.0000',
+            ],
+
+            [
+                'product_id' => 20,  // FUNTA
+                'game_type_id' => 2,  // Arcade
+                'image' => 'net_intertainment.webp',
+                'rate' => '1.0000',
+            ],
+
+            [
+                'product_id' => 21,  // FUNTA
+                'game_type_id' => 2,  // Arcade
+                'image' => 'Red_tiger.png',
+                'rate' => '1.0000',
+            ],
+
+             [
+                'product_id' => 22,  // FUNTA
+                'game_type_id' => 2,  // Arcade
+                'image' => 'big_time_gaming.webp',
+                'rate' => '1.0000',
+            ],
+
+            [
+                'product_id' => 23,  // FUNTA
+                'game_type_id' => 2,  // Arcade
+                'image' => 'no_limit_city.webp',
+                'rate' => '1.0000',
+            ],
+
+             [
+                'product_id' => 24,  // FUNTA
+                'game_type_id' => 6,  // Arcade
+                'image' => 'Evolotion.png',
+                'rate' => '1.0000',
+            ],
+
+             [
+                'product_id' => 25,  // FUNTA
+                'game_type_id' => 6,  // Arcade
+                'image' => 'sa_gamin_casino.webp',
+                'rate' => '1.0000',
+            ],
         ];
 
         DB::table('game_type_product')->insert($data);

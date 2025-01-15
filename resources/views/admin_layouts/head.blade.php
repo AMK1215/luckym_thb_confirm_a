@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ 'admin_app/assets/img/apple-icon.png' }}">
-    <link rel="icon" href="{{ asset('/assets/img/logo.png') }}">
+    <link rel="icon" href="{{ asset('/assets/img/l_logo.jpg') }}">
     <title>
-        SUPERMAN
+        LuckyMillion
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -16,8 +16,7 @@
     <link href="{{ asset('admin_app/assets/css/nucleo-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('admin_app/assets/css/nucleo-svg.css') }}" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" 
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">

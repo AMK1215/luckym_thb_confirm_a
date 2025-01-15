@@ -45,6 +45,13 @@ class DatabaseSeeder extends Seeder
             YGRGameTableSeeder::class,
             FUNTAGameTableSeeder::class,
             SimplePlayGameTableSeeder::class,
+            WFGamingSeeder::class,
+            NetEntertainmentSeeder::class,
+            RedTigerSeeder::class,
+            BigTimeGamingSeeder::class,
+            NoLimitCitySeeder::class,
+            EvolutionSeeder::class,
+            SAGamingSeeder::class
 
         ]);
 
