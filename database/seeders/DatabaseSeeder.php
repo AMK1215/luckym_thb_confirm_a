@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             JILIGameTableSeeder::class,
             Live22GameTableSeeder::class,
             CQ9GameTableSeeder::class,
+            JDBGameTableSeeder::class,
             UUSlotGameListSeeder::class, // 8
             MegaH5GameTableSeeder::class,
             EpicWinGameTableSeeder::class,

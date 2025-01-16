@@ -34,7 +34,7 @@ class GameProductSeeder extends Seeder
                 'provider_name' => 'PGSoft',
                 'is_active' => true,
                 'order' => 3,
-                'status' => 1,
+                'status' => 0,
                 'game_list_status' => 1,
             ],
             [
@@ -98,7 +98,7 @@ class GameProductSeeder extends Seeder
                 'provider_name' => 'YellowBat',
                 'is_active' => true,
                 'order' => 11,
-                'status' => 1,
+                'status' => 0,
                 'game_list_status' => 1,
             ],
             [
