@@ -43,7 +43,6 @@ class ReportController extends Controller
         $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d H:i:s') : Carbon::today()->startOfDay()->format('Y-m-d H:i:s');
         $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d H:i:s') :  Carbon::today()->endOfDay()->format('Y-m-d H:i:s');
      
-
         $resultsSubquery = Result::select(
             'results.user_id',
             DB::raw('SUM(results.total_bet_amount) as total_bet_amount'),
@@ -105,8 +104,8 @@ class ReportController extends Controller
 
     private function getPlayerDetails($playerId, $request)
     {
-        $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d H:i:s'): $this->carbon->startOfMonth()->toDateTimeString();
-        $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d H:i:s'):        $this->carbon->endOfMonth()->toDateTimeString();
+        $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d H:i:s') : Carbon::today()->startOfDay()->format('Y-m-d H:i:s');
+        $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d H:i:s') :  Carbon::today()->endOfDay()->format('Y-m-d H:i:s');
         
         $combinedSubquery = DB::table('results')
             ->select(
