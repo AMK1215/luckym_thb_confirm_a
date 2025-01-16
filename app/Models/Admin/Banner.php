@@ -26,12 +26,12 @@ class Banner extends Model
 
     public function getMobileImageUrlAttribute()
     {
-        return 'https://superman788.online/assets/img/banners/'.$this->mobile_image;
+        return asset('assets/img/banners/'.$this->mobile_image);
     }
 
     public function getDesktopImageUrlAttribute()
     {
-        return 'https://superman788.online/assets/img/banners/'.$this->desktop_image;
+        return asset('assets/img/banners/'.$this->desktop_image);
     }
 
     public function scopeAgent($query)

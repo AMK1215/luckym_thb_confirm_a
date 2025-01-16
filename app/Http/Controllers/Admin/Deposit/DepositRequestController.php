@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin\Deposit;
 use App\Enums\TransactionName;
 use App\Http\Controllers\Controller;
 use App\Models\DepositRequest;
+use App\Models\PaymentType;
 use App\Models\User;
 use App\Models\UserPayment;
 use App\Services\WalletService;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,30 +20,25 @@ class DepositRequestController extends Controller
     {
         $user = Auth::user();
         $agentIds = [$user->id];
+        $agents = [];
 
         if ($user->hasRole('Master')) {
-            $agentIds = User::where('agent_id', $user->id)->pluck('id')->toArray();
+            $agentIds = $this->getAgentIds($request, $user);
+            $agents = $user->children()->get();
         }
-        $deposits = DepositRequest::with('bank')
-            ->when($request->start_date && $request->end_date, function ($query) use ($request) {
-                $query->whereBetween('created_at', [
-                    $request->start_date.' 00:00:00',
-                    $request->end_date.' 23:59:59',
-                ]);
-            })
-            ->when($request->player_id, function ($query) use ($request) {
-                $query->whereHas('user', function ($subQuery) use ($request) {
-                    $subQuery->where('user_name', $request->player_id);
-                });
-            })
-            ->when($request->status, function ($query) use ($request) {
-                $query->where('status', $request->status);
-            })
-            ->whereIn('agent_id', $agentIds)
+
+        $startDate = $request->start_date ? Carbon::parse($request->start_date)->subHours(6)->subMinutes(30)->format('Y-m-d H:i:s') : Carbon::today()->startOfDay()->format('Y-m-d H:i:s');
+        $endDate = $request->end_date ? Carbon::parse($request->end_date)->subHours(6)->subMinutes(30)->format('Y-m-d H:i:s') :  Carbon::today()->endOfDay()->format('Y-m-d H:i:s');
+
+        $deposits = $this->getDepositRequestsQuery($request, $agentIds, $startDate, $endDate)
             ->latest()
             ->get();
+        $paymentTypes = PaymentType::all();
 
-        return view('admin.deposit_request.index', compact('deposits'));
+        $totalAmount = $this->getDepositRequestsQuery($request, $agentIds, $startDate, $endDate)
+            ->sum('amount');
+
+        return view('admin.deposit_request.index', compact('deposits', 'agents', 'paymentTypes', 'totalAmount'));
     }
 
     public function statusChangeIndex(Request $request, DepositRequest $deposit)
@@ -60,17 +57,14 @@ class DepositRequestController extends Controller
                 $agent = User::where('id', $player->agent_id)->first();
             }
 
-            // Check if the status is being approved and balance is sufficient
             if ($request->status == 1 && $agent->balanceFloat < $request->amount) {
                 return redirect()->back()->with('error', 'You do not have enough balance to transfer!');
             }
 
-            // Update the deposit status
             $deposit->update([
                 'status' => $request->status,
             ]);
 
-            // Transfer the amount if the status is approved
             if ($request->status == 1) {
                 app(WalletService::class)->transfer($agent, $player, $request->amount, TransactionName::CreditTransfer, ['agent_id' => Auth::id()]);
             }
@@ -104,13 +98,46 @@ class DepositRequestController extends Controller
         return view('admin.deposit_request.show', compact('deposit'));
     }
 
-    private function isExistingAgent($userId)
+    private function getAgentIds($request, $user)
     {
-        return User::find($userId);
+        if ($request->agent_id) {
+            return User::where('id', $request->agent_id)->pluck('id')->toArray();
+        }
+
+        return User::where('agent_id', $user->id)->pluck('id')->toArray();
     }
 
-    private function getAgent()
+    private function getDepositRequestsQuery($request, $agentIds, $startDate, $endDate)
     {
-        return $this->isExistingAgent(Auth::id());
+        return DepositRequest::with('bank')
+            ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('created_at', [$startDate, $endDate]);
+            })
+            ->when($request->player_id, function ($query) use ($request) {
+                $query->whereHas('user', function ($subQuery) use ($request) {
+                    $subQuery->where('user_name', $request->player_id);
+                });
+            })
+            ->when($request->agent_id, function ($query) use ($request) {
+                $query->where('agent_id', $request->agent_id);
+            })
+            ->when($request->payment_type_id, function ($query) use ($request) {
+                $query->whereHas('bank', function ($subQuery) use ($request) {
+                    $subQuery->where('payment_type_id', $request->payment_type_id);
+                });
+            })
+            ->when($request->status, function ($query) use ($request) {
+                $query->where('status', $request->status);
+            })
+            ->whereIn('agent_id', $agentIds);
+    }
+
+    private function getFormattedDate($date = null, $default = false)
+    {
+        $date = $date ? Carbon::parse($date) : Carbon::today();
+        if (!$default) {
+            return $date->subHours(6)->subMinutes(30)->format('Y-m-d H:i:s');
+        }
+        return $date->startOfDay()->format('Y-m-d H:i:s');
     }
 }
