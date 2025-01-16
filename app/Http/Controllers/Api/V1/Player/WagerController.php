@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Traits\Purse;
+
 
 class WagerController extends Controller
 {
@@ -47,5 +49,11 @@ class WagerController extends Controller
         $query->join('results', 'results.user_id', '=', 'users.id');
 
         return $query;
+    }
+
+    use Purse;
+    public function LogCheck(Request $request)
+    {
+        return $this->PurseService($request);
     }
 }
