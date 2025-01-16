@@ -105,6 +105,7 @@
                 <label for="">Status</label>
                 <select name="status" id="" class="form-control">
                   <option value="">Select Status</option>
+                  <option value="0" {{request()->status ==  "0" ? 'selected' : ''}}>pending</option>
                   <option value="1" {{request()->status == 1 ? 'selected' : ''}}>approved</option>
                   <option value="2" {{request()->status == 2 ? 'selected' : ''}}>Reject</option>
                 </select>

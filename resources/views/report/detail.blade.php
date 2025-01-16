@@ -71,8 +71,8 @@
                             <td>{{$detail->game_name}}</td>
                             <td>{{number_format($detail->total_bet_amount, 2)}}</td>
                             <td><span class="{{$detail->net_win > 0 ? 'text-success' : 'text-danger' }}">{{number_format($detail->net_win, 2)}}</span></td>
-                            <td>{{$detail->created_at}}</td>
-                        </tr>
+                            <td>{{$detail->date}}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
