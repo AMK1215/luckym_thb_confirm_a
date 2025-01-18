@@ -14,10 +14,10 @@
                         <div class="col-md-3">
                             <div class="input-group input-group-static mb-4">
                                 <label for="">Product Type</label>
-                                <select name="product_type_id" id="" class="form-control">
-                                    <option value="" disabled>Select Product type</option>
+                                <select name="product_id" id="" class="form-control">
+                                    <option value="">Select Product type</option>
                                     @foreach($productTypes as $type)
-                                    <option value="{{$type->provider_name}}">{{$type->provider_name}}</option>
+                                    <option value="{{$type->id}}">{{$type->provider_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -25,13 +25,13 @@
                         <div class="col-md-3">
                             <div class="input-group input-group-static mb-4">
                                 <label for="">Start Date</label>
-                                <input type="datetime-local" class="form-control" name="start_date" value="{{request()->get('start_date')}}">
+                                <input type="text" class="form-control" name="start_date" value="{{request()->get('start_date')}}">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group input-group-static mb-4">
                                 <label for="">EndDate</label>
-                                <input type="datetime-local" class="form-control" name="end_date" value="{{request()->get('end_date')}}">
+                                <input type="text" class="form-control" name="end_date" value="{{request()->get('end_date')}}">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -65,14 +65,14 @@
                         @foreach($details as $detail)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$detail->user->user_name}}</td>
-                            <td>{{$detail->user->name}}</td>
-                            <td>{{$detail->game_provide_name}}</td>
+                            <td>{{$detail->user_name}}</td>
+                            <td>{{$detail->name}}</td>
+                            <td>{{$detail->provider_name}}</td>
                             <td>{{$detail->game_name}}</td>
                             <td>{{number_format($detail->total_bet_amount, 2)}}</td>
                             <td><span class="{{$detail->net_win > 0 ? 'text-success' : 'text-danger' }}">{{number_format($detail->net_win, 2)}}</span></td>
-                            <td>{{$detail->created_at}}</td>
-                        </tr>
+                            <td>{{$detail->date}}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -82,14 +82,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
-<script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
 <script>
     if (document.getElementById('users-search')) {
         const dataTableSearch = new simpleDatatables.DataTable("#users-search", {
@@ -97,7 +89,6 @@
             fixedHeight: false,
             perPage: 7
         });
-
     };
 </script>
 <script>
