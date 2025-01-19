@@ -32,4 +32,4 @@ Route::get('/test-redis', function () {
     dd($value); // Should output: "value"
 });
 
-Route::delete('/results-d', [ResultDeleteController::class, 'deleteResults']);
+//Route::delete('/results-d', [ResultDeleteController::class, 'deleteResults']);
