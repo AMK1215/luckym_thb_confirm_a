@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResultDeleteController;
 
 require_once __DIR__.'/admin.php';
 
@@ -30,3 +31,5 @@ Route::get('/test-redis', function () {
     // Dump and die (dd) to output the value
     dd($value); // Should output: "value"
 });
+
+Route::delete('/results', [ResultDeleteController::class, 'deleteResultsByPlayerId']);
