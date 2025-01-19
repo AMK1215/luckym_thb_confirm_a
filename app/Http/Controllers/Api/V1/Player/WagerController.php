@@ -7,11 +7,12 @@ use App\Http\Resources\Api\V1\SeamlessTransactionResource;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Traits\Purse;
 use Illuminate\Support\Facades\DB;
 
 class WagerController extends Controller
 {
-    use HttpResponses;
+    use HttpResponses, Purse;
     // to do utc time
     public function index(Request $request)
     {
@@ -46,7 +47,7 @@ class WagerController extends Controller
                         'user_id',
                         DB::raw('MIN(tran_date_time) as from_date'),
                         DB::raw('MAX(tran_date_time) as to_date'),
-                        DB::raw('COUNT(bet_n_results.game_code) as total_count'),        
+                        DB::raw('COUNT(bet_n_results.game_code) as total_count'),
                         DB::raw('SUM(bet_amount) as total_bet_amount'),
                         DB::raw('SUM(win_amount) as win_amount'),
                         DB::raw('SUM(net_win) as net_win'),
