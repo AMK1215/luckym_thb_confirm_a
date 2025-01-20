@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('signature', 50);
             $table->string('player_id', 50);
             $table->string('currency', 5);
-            $table->string('round_id', 30);
+            //$table->string('round_id', 30);
+            $table->string('round_id', 30)->index();
             $table->string('bet_id', 30)->unique();
             $table->string('game_code', 50);
             $table->decimal('bet_amount', 18, 4);

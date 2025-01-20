@@ -7,12 +7,13 @@ use App\Http\Resources\Api\V1\SeamlessTransactionResource;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
-use Illuminate\Support\Traits\Purse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Traits\Purse;
 
 class WagerController extends Controller
 {
     use HttpResponses, Purse;
+
     // to do utc time
     public function index(Request $request)
     {
@@ -65,6 +66,6 @@ class WagerController extends Controller
             ->orderBy('players.id', 'desc')
             ->get();
 
-            return $this->success(SeamlessTransactionResource::collection($transactions));
+        return $this->success(SeamlessTransactionResource::collection($transactions));
     }
 }

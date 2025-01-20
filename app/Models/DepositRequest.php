@@ -36,5 +36,4 @@ class DepositRequest extends Model
             $model->updated_at = Carbon::now('Asia/Yangon');
         });
     }
-
 }

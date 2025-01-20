@@ -54,7 +54,6 @@ Route::post('GetGameListByProvider', [GetGameListByProviderController::class, 'f
 
 Route::delete('/game-lists-delete', [GameController::class, 'deleteGameLists']);
 
-
 // for slot
 Route::post('/transaction-details/{tranId}', [GetDaySummaryController::class, 'getTransactionDetails']);
 

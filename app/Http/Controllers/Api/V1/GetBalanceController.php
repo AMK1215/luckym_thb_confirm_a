@@ -64,6 +64,4 @@ class GetBalanceController extends Controller
             ], 500);
         }
     }
-
-
 }
