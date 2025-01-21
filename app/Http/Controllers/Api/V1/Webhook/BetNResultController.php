@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Slot\BetNResultWebhookRequest;
 use App\Models\User;
 use App\Models\Webhook\BetNResult;
+use App\Models\Webhook\Bet;
 use App\Services\PlaceBetWebhookService;
 use App\Traits\UseWebhook;
 use Carbon\Carbon;
@@ -53,6 +54,15 @@ class BetNResultController extends Controller
                     return $this->buildErrorResponse(StatusCode::InvalidSignature);
                 }
 
+                // check for TranID not found
+                $existingtranId = Bet::where('tran_id', $transaction['TranId'])->first();
+                if(!$existingtranId){
+                    
+                    // If TranID is not found, return a success response with the current balance
+                    $Balance = $request->getMember()->balanceFloat;
+
+                    return $this->buildErrorResponse(StatusCode::BetTransactionNotFound, $Balance);
+                }
                 // Check for duplicate transaction
                 $existingTransaction = BetNResult::where('tran_id', $transaction['TranId'])->first();
                 if ($existingTransaction) {
