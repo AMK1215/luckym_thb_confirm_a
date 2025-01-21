@@ -117,4 +117,36 @@ class BetResultController extends Controller
             'Balance' => round($balance, 4),
         ]);
     }
+
+    private function isValidSignature(array $transaction): bool
+    {
+        $generatedSignature = $this->generateSignature($transaction);
+        //Log::info('Generated result signature', ['GeneratedSignature' => $generatedSignature]);
+
+        if ($generatedSignature !== $transaction['Signature']) {
+            Log::warning('Signature validation failed for transaction', [
+                'transaction' => $transaction,
+                'generated_signature' => $generatedSignature,
+            ]);
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private function generateSignature(array $transaction): string
+    {
+        $method = 'Result';
+
+        return md5(
+            $method.
+            $transaction['RoundId'].
+            $transaction['ResultId'].
+            $transaction['RequestDateTime'].
+            $transaction['OperatorId'].
+            config('game.api.secret_key').
+            $transaction['PlayerId']
+        );
+    }
 }
