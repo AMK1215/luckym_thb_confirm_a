@@ -55,7 +55,7 @@ class BetNResultController extends Controller
                 }
 
                 // check for TranID not found
-                $existingtranId = Bet::where('tran_id', $transaction['TranId'])->first();
+                $existingtranId = Bet::where('bet_id', $transaction['TranId'])->first();
                 if (! $existingtranId) {
 
                     // If TranID is not found, return a success response with the current balance
