@@ -10,6 +10,7 @@ use App\Models\Admin\GameList;
 use App\Models\User;
 use App\Models\Webhook\Bet;
 use App\Models\Webhook\Result;
+use App\Traits\UseWebhook;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Redis;
 
 class BetResultController extends Controller
 {
+    use UseWebhook;
+
     public function handleResult(ResultWebhookRequest $request): JsonResponse
     {
         $transactions = $request->getTransactions();
@@ -200,5 +203,4 @@ class BetResultController extends Controller
             ]);
         }
     }
-
 }

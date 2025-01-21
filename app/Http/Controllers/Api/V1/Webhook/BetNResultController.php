@@ -7,8 +7,8 @@ use App\Enums\TransactionName;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Slot\BetNResultWebhookRequest;
 use App\Models\User;
-use App\Models\Webhook\BetNResult;
 use App\Models\Webhook\Bet;
+use App\Models\Webhook\BetNResult;
 use App\Services\PlaceBetWebhookService;
 use App\Traits\UseWebhook;
 use Carbon\Carbon;
@@ -56,8 +56,8 @@ class BetNResultController extends Controller
 
                 // check for TranID not found
                 $existingtranId = Bet::where('tran_id', $transaction['TranId'])->first();
-                if(!$existingtranId){
-                    
+                if (! $existingtranId) {
+
                     // If TranID is not found, return a success response with the current balance
                     $Balance = $request->getMember()->balanceFloat;
 
