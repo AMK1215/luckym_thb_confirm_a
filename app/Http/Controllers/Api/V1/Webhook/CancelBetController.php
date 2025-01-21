@@ -61,7 +61,9 @@ class CancelBetController extends Controller
                         // Transaction is already canceled; return success with the current balance
                         Log::info('Duplicate CancelBet request detected', ['BetId' => $transaction['BetId']]);
 
-                        return $this->buildSuccessResponse($player->wallet->balanceFloat);
+                        //return $this->buildSuccessResponse($player->wallet->balanceFloat);
+                    return $this->buildErrorResponse(StatusCode::DuplicateTransaction, 0);
+
                     }
                 } else {
                     Log::warning('Bet Transaction Not Found', ['BetId' => $transaction['BetId']]);
