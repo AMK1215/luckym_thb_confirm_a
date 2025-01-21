@@ -60,9 +60,10 @@ class CancelBetController extends Controller
                     if ($existingTransaction->status === 'cancelled') {
                         // Transaction is already canceled; return success with the current balance
                         Log::info('Duplicate CancelBet request detected', ['BetId' => $transaction['BetId']]);
+                    $Balance = $request->getMember()->balanceFloat;
 
                         //return $this->buildSuccessResponse($player->wallet->balanceFloat);
-                    return $this->buildErrorResponse(StatusCode::DuplicateTransaction, 0);
+                    return $this->buildErrorResponse(StatusCode::DuplicateTransaction, $Balance);
 
                     }
                 } else {
