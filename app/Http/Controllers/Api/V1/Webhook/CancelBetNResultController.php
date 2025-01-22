@@ -38,7 +38,7 @@ class CancelBetNResultController extends Controller
                 if (! $existingtranId) {
 
                     // If TranID is not found, return a success response with the current balance
-                    $Balance = $request->getPlayer()->balanceFloat;
+                    $Balance = $request->getMember()->balanceFloat;
 
                     return $this->buildErrorResponse(StatusCode::BetTransactionNotFound, $Balance);
                 }
