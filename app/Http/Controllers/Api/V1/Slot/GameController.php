@@ -65,6 +65,7 @@ class GameController extends Controller
         }])
             ->get();
 
+        return $gameLists;
         return $this->success(HotGameDetailResource::collection($gameLists), 'Hot Game Detail Successfully');
     }
 
