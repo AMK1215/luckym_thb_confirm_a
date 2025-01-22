@@ -13,6 +13,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Webhook\Bet;
+use App\Models\Webhook\Result;
+
 class CancelBetNResultController extends Controller
 {
     use UseWebhook;
@@ -45,13 +47,24 @@ class CancelBetNResultController extends Controller
 
                 }
 
-                $existingTransaction = BetNResult::where('tran_id', $transaction['TranId'])->first();
+                // $existingTransaction = BetNResult::where('tran_id', $transaction['TranId'])->first();
 
-                if ($this->isTransactionProcessed($existingTransaction)) {
+
+
+                // if ($this->isTransactionProcessed($existingTransaction)) {
+                //     return $this->buildErrorResponse(StatusCode::NotEligibleCancel, $player->wallet->balanceFloat);
+                // }
+
+                // Check if a result exists for the round (cannot cancel if result exists)
+                $associatedResult = Result::where('round_id', $transaction['RoundId'])->first();
+                if ($associatedResult) {
+                    Log::info('Cancellation not allowed - result already processed', ['RoundId' => $transaction['RoundId']]);
+
+                    // Return 900500 Not Eligible Cancel without adjusting balance
                     return $this->buildErrorResponse(StatusCode::NotEligibleCancel, $player->wallet->balanceFloat);
                 }
 
-                $this->processTransaction($existingTransaction, $transaction, $player);
+                $this->processTransaction($associatedResult, $transaction, $player);
             }
 
             DB::commit();
