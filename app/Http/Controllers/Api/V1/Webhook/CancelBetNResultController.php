@@ -56,9 +56,9 @@ class CancelBetNResultController extends Controller
                 // }
 
                 // Check if a result exists for the round (cannot cancel if result exists)
-                $associatedResult = Result::where('round_id', $transaction['RoundId'])->first();
+                $associatedResult = Bet::where('bet_id', $transaction['TranId'])->first();
                 if ($associatedResult) {
-                    Log::info('Cancellation not allowed - result already processed', ['RoundId' => $transaction['RoundId']]);
+                    Log::info('Cancellation not allowed - result already processed', ['TranId' => $transaction['TranId']]);
 
                     // Return 900500 Not Eligible Cancel without adjusting balance
                     return $this->buildErrorResponse(StatusCode::NotEligibleCancel, $player->wallet->balanceFloat);
