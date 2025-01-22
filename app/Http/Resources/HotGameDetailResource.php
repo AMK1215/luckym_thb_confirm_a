@@ -20,7 +20,7 @@ class HotGameDetailResource extends JsonResource
             'id' => $this->id,
             'provider_name' => $this->provider_name,
             'game_type_id' => $this->gameLists[0]['game_type_id'],
-            'imgUrl' => asset('assets/img/provider_logo/'.$imgUrl),
+            'image' => asset('assets/img/provider_logo/'.$imgUrl),
             'hot_lists' => $this->gameLists->map(function ($game) {
                 return [
                     'code' => $game->game_code,
