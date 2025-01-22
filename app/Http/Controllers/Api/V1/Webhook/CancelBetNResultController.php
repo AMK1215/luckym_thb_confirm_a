@@ -86,6 +86,11 @@ class CancelBetNResultController extends Controller
     private function validateSignature(array $transaction): bool
     {
         $generatedSignature = $this->generateSignature($transaction);
+         Log::debug('Signature validation', [
+        'generated_signature' => $generatedSignature,
+        'provided_signature' => $transaction['Signature'],
+        'transaction_data' => $transaction, // Optional: log the entire transaction for detailed debugging
+    ]);
 
         return $generatedSignature === $transaction['Signature'];
     }
