@@ -54,15 +54,15 @@ class BetNResultController extends Controller
                     return $this->buildErrorResponse(StatusCode::InvalidSignature);
                 }
 
-                // check for TranID not found
-                $existingtranId = Bet::where('bet_id', $transaction['TranId'])->first();
-                if (! $existingtranId) {
+                // // check for TranID not found
+                // $existingtranId = Bet::where('bet_id', $transaction['TranId'])->first();
+                // if (! $existingtranId) {
 
-                    // If TranID is not found, return a success response with the current balance
-                    $Balance = $request->getMember()->balanceFloat;
+                //     // If TranID is not found, return a success response with the current balance
+                //     $Balance = $request->getMember()->balanceFloat;
 
-                    return $this->buildErrorResponse(StatusCode::BetTransactionNotFound, $Balance);
-                }
+                //     return $this->buildErrorResponse(StatusCode::BetTransactionNotFound, $Balance);
+                // }
                 // Check for duplicate transaction
                 $existingTransaction = BetNResult::where('tran_id', $transaction['TranId'])->first();
                 if ($existingTransaction) {

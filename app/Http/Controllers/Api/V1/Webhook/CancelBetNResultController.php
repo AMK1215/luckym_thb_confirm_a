@@ -12,7 +12,7 @@ use App\Traits\UseWebhook;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Webhook\Bet;
 class CancelBetNResultController extends Controller
 {
     use UseWebhook;
@@ -31,6 +31,16 @@ class CancelBetNResultController extends Controller
 
                 if (! $this->validateSignature($transaction)) {
                     return $this->buildErrorResponse(StatusCode::InvalidSignature, $player->wallet->balanceFloat ?? 0);
+                }
+
+                // check for TranID not found
+                $existingtranId = Bet::where('bet_id', $transaction['TranId'])->first();
+                if (! $existingtranId) {
+
+                    // If TranID is not found, return a success response with the current balance
+                    $Balance = $request->getPlayer()->balanceFloat;
+
+                    return $this->buildErrorResponse(StatusCode::BetTransactionNotFound, $Balance);
                 }
 
                 $existingTransaction = BetNResult::where('tran_id', $transaction['TranId'])->first();
@@ -114,7 +124,7 @@ class CancelBetNResultController extends Controller
     private function generateSignature(array $transaction): string
     {
         return md5(
-            'Result'.
+            'CancelBetNResult'.
             $transaction['TranId'].
             $transaction['RequestDateTime'].
             $transaction['OperatorId'].
