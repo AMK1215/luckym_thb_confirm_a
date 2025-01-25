@@ -116,14 +116,14 @@
             
             <div class="custom-form-group">
               <label for="title">Master Name <span class="text-danger">*</span></label>
-              <input type="text"  name="name" class="form-control" value="{{old('name')}}" placeholder="6-20 characters without spacing">
+              <input type="text"  name="name" class="form-control" value="{{old('name')}}" placeholder="Enter name">
               @error('player_name')
               <span class="text-danger d-block">*{{ $message }}</span>
               @enderror
             </div>
             <div class="custom-form-group">
               <label for="title">Password <span class="text-danger">*</span></label>
-              <input type="text"  name="password" class="form-control" value="{{old('password')}}" placeholder="6-20 characters without spacing">
+              <input type="text"  name="password" class="form-control" value="{{old('password')}}" placeholder="Enter password">
               @error('password')
               <span class="text-danger d-block">*{{ $message }}</span>
               @enderror
@@ -146,22 +146,7 @@
               @error('amount')
               <span class="text-danger d-block">*{{ $message }}</span>
               @enderror
-            </div>
-            {{-- active and inactive with dropdown --}}
-            <div class="custom-form-group">
-            <label for="title">Status <span class="text-danger">*</span></label>
-            <div class="custom-select-wrapper">
-                <select name="status" class="form-control custom-select">
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </select>
-            </div>
-            @error('status')
-            <span class="text-danger d-block">*{{ $message }}</span>
-            @enderror
-          </div>
-
-           
+            </div>           
             <div class="custom-form-group">
               <button class="btn btn-info" type="button" id="resetFormButton">Cancel</button>
 
@@ -220,7 +205,7 @@
 <script>
   var errorMessage = @json(session('error'));
   var successMessage = @json(session('success'));
-  var url = 'https://moneyking77.online/login';
+  var url = 'https://luckymillion.pro/login';
   var name = @json(session('username'));
   var pw = @json(session('password'));
 

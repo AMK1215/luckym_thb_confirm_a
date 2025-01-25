@@ -34,18 +34,12 @@
         }
 
         #main {
-            background-image: url("{{ asset('assets/img/l_logo.jpg') }}");
-            /* Dynamically set background image */
-            /* fallback background color, uncomment if needed */
-            /* background: #000; */
+            background-image: url("{{ asset('assets/img/background.png') }}");
             min-height: 100vh;
-            /* Ensure the container takes up the full viewport height */
             background-repeat: no-repeat;
             /* Prevent the image from repeating */
             background-size: cover;
-            /* Ensure the image covers the entire container */
             background-position: center;
-            /* Center the image within the container */
         }
 
         .login-card {

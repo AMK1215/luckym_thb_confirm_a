@@ -38,7 +38,7 @@
     <script src="{{ asset('admin_app/assets/js/plugins/quill.min.js') }}"></script>
     <script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
     <script src="{{ asset('admin_app/assets/js/plugins/datatables.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -51,15 +51,25 @@
     <script src="{{ asset('admin_app/assets/js/material-dashboard.min.js?v=3.0.6') }}"></script>
     <script>
         $(document).ready(function() {
-            $('input[name="start_date"]').flatpickr({
-                enableTime: true,
-                dateFormat: "m/d/Y H:i",
+            $(".is-hide").hide();
+            $("#single").on("change", function() {
+                console.log('here');
+                $("#singleAgent").show();
             });
-            $('input[name="end_date"]').flatpickr({
-                enableTime: true,
-                dateFormat: "m/d/Y H:i",
+            $("#all").on("change", function() {
+                $("#singleAgent").hide();
             });
         });
+
+        $('input[name="start_date"]').flatpickr({
+            enableTime: true,
+            dateFormat: "m/d/Y H:i",
+        });
+        $('input[name="end_date"]').flatpickr({
+            enableTime: true,
+            dateFormat: "m/d/Y H:i",
+        });
+        
     </script>
     <script>
         @if(Session::has('success') || Session::has('error'))

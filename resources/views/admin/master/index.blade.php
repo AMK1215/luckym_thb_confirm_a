@@ -1,18 +1,4 @@
 @extends('admin_layouts.app')
-@section('styles')
-<style>
-  .transparent-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    box-shadow: none;
-    appearance: none;
-    /* For some browsers */
-  }
-</style>
-@endsection
 @section('content')
 <div class="row mt-4">
   <div class="col-12">
@@ -80,7 +66,7 @@
                 <a class="me-1" href="{{ route('admin.master.getChangePassword', $user->id) }}" data-bs-toggle="tooltip" data-bs-original-title="Change Password">
                   <i class="fas fa-lock text-info" style="font-size: 20px;"></i>
                 </a>
-                <a class="me-1" href="{{ route('admin.master.edit', $user->id) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit Agent">
+                <a class="me-1" href="{{ route('admin.master.edit', $user->id) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit Master">
                   <i class="fas fa-pen-to-square text-info" style="font-size: 20px;"></i>
                 </a>
               </td>

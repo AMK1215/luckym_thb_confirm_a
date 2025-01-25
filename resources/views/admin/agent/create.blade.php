@@ -129,7 +129,7 @@
 
             <div class="custom-form-group">
               <label for="title">Password <span class="text-danger">*</span></label>
-              <input type="text"  name="password" class="form-control" value="{{old('password')}}" placeholder="6-20 characters without spacing">
+              <input type="text"  name="password" class="form-control" value="{{old('password')}}" placeholder="Enter Password">
               @error('password')
               <span class="text-danger d-block">*{{ $message }}</span>
               @enderror
@@ -152,22 +152,7 @@
               @error('amount')
               <span class="text-danger d-block">*{{ $message }}</span>
               @enderror
-            </div>
-            {{-- active and inactive with dropdown --}} 
-            <div class="custom-form-group">
-            <label for="title">Status <span class="text-danger">*</span></label>
-            <div class="custom-select-wrapper">
-                <select name="status" class="form-control custom-select">
-                    <option value="1">Active</option>
-                    <option value="0">Inactive</option>
-                </select>
-            </div>
-            @error('status')
-            <span class="text-danger d-block">*{{ $message }}</span>
-            @enderror
-          </div>
-
-           
+            </div> 
             <div class="custom-form-group">
               <button class="btn btn-info" type="button" id="resetFormButton">Cancel</button>
 
@@ -175,42 +160,6 @@
             </div>
           </form>
         </div>
-        {{-- <div class="card-body">
-          <form role="form" method="POST" class="text-start" action="{{ route('admin.agent.store') }}">
-            @csrf
-            <div class="custom-form-group">
-              <label for="title">Agent Name <span class="text-danger">*</span></label>
-              <input type="text"  name="user_name" class="form-control" value="{{$agent_name}}" readonly>
-              @error('user_name')
-              <span class="text-danger d-block">*{{ $message }}</span>
-              @enderror
-            </div>
-            <div class="custom-form-group">
-              <label for="title">Name <span class="text-danger">*</span></label>
-              <input type="text"  name="name" class="form-control" value="{{old('name')}}">
-              @error('name')
-              <span class="text-danger d-block">*{{ $message }}</span>
-              @enderror
-            </div>
-            <div class="custom-form-group">
-              <label for="title">Phone No <span class="text-danger">*</span></label>
-              <input type="text"  name="phone" class="form-control" value="{{old('phone')}}">
-              @error('phone')
-              <span class="text-danger d-block">*{{ $message }}</span>
-              @enderror
-            </div>
-            <div class="custom-form-group">
-              <label for="title">Password <span class="text-danger">*</span></label>
-              <input type="text"  name="password" class="form-control" value="{{old('password')}}">
-              @error('password')
-              <span class="text-danger d-block">*{{ $message }}</span>
-              @enderror
-            </div>
-            <div class="custom-form-group">
-              <button type="submit" class="btn btn-primary" type="button">Create</button>
-            </div>
-          </form>
-        </div> --}}
       </div>
     </div>
   </div>
@@ -226,7 +175,7 @@
 <script>
   var errorMessage = @json(session('error'));
   var successMessage = @json(session('success'));
-  var url = 'https://moneyking77.online/login';
+  var url = 'https://luckymillion.pro/login';
   var name = @json(session('username'));
   var pw = @json(session('password'));
 

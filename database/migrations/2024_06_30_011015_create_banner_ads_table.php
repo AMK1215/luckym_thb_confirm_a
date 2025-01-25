@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('mobile_image');
             $table->string('desktop_image');
             $table->longText('description')->nullable();
-            $table->unsignedBigInteger('agent_id');
-            $table->foreign('agent_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

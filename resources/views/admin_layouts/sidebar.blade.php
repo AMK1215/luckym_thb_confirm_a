@@ -2,7 +2,7 @@
 
     <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link text-white " href="{{ route('home') }}" style="font-szie:large;">
+            <a class="nav-link text-white" href="{{ route('home') }}" style="font-szie:large;">
                 <span class="sidenav-mini-icon"> <i class="material-icons-round opacity-10">dashboard</i> </span>
                 <span class="sidenav-normal  ms-2  ps-1"> Dashboard </span>
             </a>
@@ -87,7 +87,7 @@
         @canany(['master_access', 'agent_access'])
             <li class="nav-item ">
                 <a class="nav-link text-white " href="{{ route('admin.contact.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+                    <span class="sidenav-mini-icon"> <i class="fas fa-address-book"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1"> Contact </span>
                 </a>
             </li>
@@ -95,7 +95,7 @@
         @canany(['master_access', 'agent_access'])
             <li class="nav-item ">
                 <a class="nav-link text-white " href="{{ route('admin.bonus.index') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+                    <span class="sidenav-mini-icon"> <i class="fa fa-gift"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1"> Bonus </span>
                 </a>
             </li>
@@ -113,26 +113,26 @@
                         @canany(['master_access', 'agent_access'])
                         <li class="nav-item ">
                             <a class="nav-link text-white " href="{{ route('admin.banners.index') }}">
-                                <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+                                <span class="sidenav-mini-icon"> <i class="fa fa-flag"></i> </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Banner </span>
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a class="nav-link text-white " href="{{ route('admin.adsbanners.index') }}">
-                                <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+                            <a class="nav-link text-white " href="{{ route('admin.bannerAds.index') }}">
+                                <span class="sidenav-mini-icon"> <i class="fa fa-audio-description"></i></span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Ads Banner </span>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white " href="{{ route('admin.text.index') }}">
-                                <span class="sidenav-mini-icon"> <i class="fa-solid fa-panorama"></i> </span>
+                                <span class="sidenav-mini-icon"> <i class="fa fa-text-width"></i> </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Banner Text </span>
                             </a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white " href="{{ route('admin.promotions.index') }}">
-                                <span class="sidenav-mini-icon"> <i class="fas fa-gift"></i> </span>
+                                <span class="sidenav-mini-icon"> <i class="fas fa-bullhorn"></i> </span>
                                 <span class="sidenav-normal  ms-2  ps-1"> Promotions </span>
                             </a>
                         </li>

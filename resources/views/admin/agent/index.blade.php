@@ -1,18 +1,4 @@
 @extends('admin_layouts.app')
-@section('styles')
-<style>
-  .transparent-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    box-shadow: none;
-    appearance: none;
-    /* For some browsers */
-  }
-</style>
-@endsection
 @section('content')
 <div class="row mt-4">
   <div class="col-12">
@@ -45,7 +31,7 @@
             <th>Action</th>
             <th>Transfer</th>
           </thead>
-          <tbody>\
+          <tbody>
             {{-- kzt --}}
             @if(isset($users))
             @if(count($users)>0)
@@ -67,11 +53,11 @@
 
               <td>
               @if ($user->status == 1)
-                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();" class="me-2" href="#" data-bs-toggle="tooltip" data-bs-original-title="Active Master">
+                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();" class="me-2" href="#" data-bs-toggle="tooltip" data-bs-original-title="Active Agent">
                   <i class="fas fa-user-check text-success" style="font-size: 20px;"></i>
                 </a>
                 @else
-                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();" class="me-2" href="#" data-bs-toggle="tooltip" data-bs-original-title="InActive Master">
+                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();" class="me-2" href="#" data-bs-toggle="tooltip" data-bs-original-title="InActive Agent">
                   <i class="fas fa-user-slash text-danger" style="font-size: 20px;"></i>
                 </a>
                 @endif

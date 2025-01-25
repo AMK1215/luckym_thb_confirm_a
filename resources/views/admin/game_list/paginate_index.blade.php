@@ -1,21 +1,4 @@
 @extends('admin_layouts.app')
-
-@section('styles')
-<style>
-.transparent-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    outline: none;
-    cursor: pointer;
-    box-shadow: none;
-    appearance: none; /* For some browsers */
-}
-</style>
-<!-- DataTables CSS -->
-<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-@endsection
-
 @section('content')
 <div class="row mt-4">
     <div class="col-12">

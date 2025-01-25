@@ -1,18 +1,14 @@
 @include('user.layouts.head')
-
-
 <body>
   <div class=" container-fluid" id="main">
     <div class="pt-5">
       <div class="row">
         <div class="col-md-4 offset-md-4">
-          <div class="p-3 shadow border border-1 border-danger rounded-4 login-card">
+          <div class="p-3 shadow border border-1 rounded-4">
             <div class="text-center mt-3">
-              <img src="{{ asset('/assets/img/logo.png') }}" alt="" style="width: 120px; height: auto" />
+              <img src="{{ asset('/assets/img/main_logo.png') }}" alt="" style="width: 120px; height: auto" />
             </div>
-            <h4 class="text-center mt-3 text-white">Superman</h4>
-            <h5 class="text-center mt-3 text-white">Admin Login</h5>
-            {{-- <p class="text-center text-white ">Enter your userId   and password to sign in</p> --}}
+            <h4 class="text-center mt-3 text-white">Admin Login</h4>
             <form action="{{ route('login') }}" method="post" class="px-3 pb-4 pt-3">
               @csrf
               <div class="mb-3">
@@ -36,11 +32,9 @@
               </div>
       
               <div class="mb-3 mt-2">
-                <button type="submit" class="btn btn-danger w-100">LOGIN</button>
+                <button type="submit" class="btn btn-primary w-100">login</button>
               </div>
-      
-              {{-- <hr /> --}}
-      
+    
             </form>
           </div>
         </div>

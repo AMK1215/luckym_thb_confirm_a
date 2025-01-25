@@ -69,7 +69,7 @@ Route::group([
     Route::put('/change-kpay-no', [ProfileController::class, 'KpayNoChange'])->name('changeKpayNo');
     Route::put('/change-join-date', [ProfileController::class, 'JoinDate'])->name('addJoinDate');
     Route::resource('banners', BannerController::class);
-    Route::resource('adsbanners', BannerAdsController::class);
+    Route::resource('bannerAds', BannerAdsController::class);
     Route::resource('text', BannerTextController::class);
     Route::resource('/promotions', PromotionController::class);
     Route::resource('products', ProductController::class);
