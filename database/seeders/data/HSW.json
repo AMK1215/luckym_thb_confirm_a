@@ -1,6 +1,23 @@
 {
     "Game": [
         {
+            "GameId": 516167,
+            "GameCode": "516167",
+            "GameName": "Phoenix Duelreels",
+            "GameType": 1,
+            "ImageUrl": "https://gicon.sm-sspi-res.com/providers/hacksaw/thumbs_square/516167.png",
+            "Method": "Slots",
+            "IsH5Support": true,
+            "Maintenance": "1|2|3|4|5|6",
+            "GameLobbyConfig": "",
+            "OtherName": [],
+            "HasDemo": false,
+            "Sequence": 997,
+            "GameEvent": null,
+            "GameProvideCode": "HSW",
+            "GameProvideName": "Hacksaw"
+        },
+        {
             "GameId": 516165,
             "GameCode": "516165",
             "GameName": "KLOWNS",
@@ -2281,7 +2298,7 @@
         {
             "GameId": 516143,
             "GameCode": "516143",
-            "GameName": "Scratch’em",
+            "GameName": "Scratch\u2019em",
             "GameType": 7,
             "ImageUrl": "https://gicon.sm-sspi-res.com/providers/hacksaw/thumbs_square/516143.png",
             "Method": "-",

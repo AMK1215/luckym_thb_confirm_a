@@ -1,23 +1,6 @@
 {
     "Game": [
         {
-            "GameId": 510060,
-            "GameCode": "510060",
-            "GameName": "Boxing Riches",
-            "GameType": 1,
-            "ImageUrl": "https://gicon.sm-sspi-res.com/providers/fachai/thumbs_square/510060.png",
-            "Method": "Slots",
-            "IsH5Support": true,
-            "Maintenance": "1|2|3|4|5|6",
-            "GameLobbyConfig": "",
-            "OtherName": [],
-            "HasDemo": false,
-            "Sequence": 995,
-            "GameEvent": null,
-            "GameProvideCode": "FACHAI",
-            "GameProvideName": "FaChai"
-        },
-        {
             "GameId": 510059,
             "GameCode": "510059",
             "GameName": "Poker Win ",
