@@ -14,9 +14,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\PullReport::class,
-        Commands\ArchiveOldResult::class,
+        //Commands\PullReport::class,
+        //Commands\ArchiveOldResult::class,
         Commands\DeleteOldWagerBackups::class,
+        Commands\ArchiveOldBetNResult::class,
     ];
 
     /**
@@ -26,9 +27,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('make:pull-report')->everyFiveSeconds();
-        $schedule->command('archive:old-result')->everyThirtyMinutes();
-        $schedule->command('wagers:delete-old-backups')->cron('*/45 * * * *');
+          // Run the 'archive:old-result' command daily at midnight 12:00 AM
+        $schedule->command('archive:old-result')->dailyAt('00:00');
+
+        //schedules the archive:old-bet-n-result command to run daily at 1:00 AM.
+        $schedule->command('archive:old-bet-n-result')->dailyAt('01:00');
+        //$schedule->command('make:pull-report')->everyFiveSeconds();
+        //$schedule->command('archive:old-result')->everyThirtyMinutes();
+        //$schedule->command('archive:old-bet-n-result')->everyThirtyMinutes();
+        //$schedule->command('wagers:delete-old-backups')->cron('*/45 * * * *');
     }
 
     /**

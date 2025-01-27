@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models\Webhook;
+namespace App\Models\Admin;
 
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BetNResult extends Model
+class BetresultBackup extends Model
 {
     use HasFactory;
 
-    protected $table = 'bet_n_results';
+    protected $table = 'betresult_backups';
 
     protected $fillable = [
         'user_id',
@@ -33,6 +33,9 @@ class BetNResult extends Model
         'old_balance',
         'new_balance',
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
+
 
     public function user()
     {

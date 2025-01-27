@@ -4,7 +4,7 @@ php artisan migrate --path=/database/migrations/2024_10_14_042230_add_version_to
 // to remove laravel log
 php -r "file_put_contents('/var/www/luckym_thb_confirm_a/storage/logs/laravel.log', '');"
 // created dev branch for kzt
-
+* * * * * cd /var/www/luckym_thb_confirm_a && php artisan schedule:run >> /dev/null 2>&1
 dead lock = show variables like '%dead%'; /  set global innodb_print_all_deadlocks=ON;
 
 BigGaming remove
