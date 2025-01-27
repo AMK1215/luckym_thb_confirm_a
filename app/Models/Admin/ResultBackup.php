@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Webhook;
+namespace App\Models\Admin;
 
 use App\Models\Admin\Product;
 use App\Models\User;
@@ -8,18 +8,15 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Result extends Model
+class ResultBackup extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'user_id',
         'player_name',
         'game_provide_name',
         'game_name',
         'operator_id',
-        // 'game_provide_name',
-        // 'game_name',
         'request_date_time',
         'signature',
         'player_id',
@@ -37,6 +34,8 @@ class Result extends Model
     protected $casts = [
         'bet_ids' => 'array', // Cast to array for JSON
     ];
+    protected $dates = ['created_at', 'updated_at'];
+
 
     /**
      * Get the user associated with the result.

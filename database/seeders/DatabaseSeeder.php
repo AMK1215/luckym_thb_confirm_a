@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             NoLimitCitySeeder::class,
             EvolutionSeeder::class,
             SAGamingSeeder::class,
+            HSWGameTableSeeder::class,
 
         ]);
 

@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\PullReport::class,
-        Commands\ArchiveOldWagers::class,
+        Commands\ArchiveOldResult::class,
         Commands\DeleteOldWagerBackups::class,
     ];
 
@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('make:pull-report')->everyFiveSeconds();
-        $schedule->command('archive:old-wagers')->everyThirtyMinutes();
+        $schedule->command('archive:old-result')->everyThirtyMinutes();
         $schedule->command('wagers:delete-old-backups')->cron('*/45 * * * *');
     }
 
