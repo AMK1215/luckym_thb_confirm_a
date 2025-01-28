@@ -113,6 +113,7 @@ class PlayerController extends Controller
                 'register_ip' => $request->ip(),
                 'user_id' => $player->id,
                 'user_agent' => $request->userAgent(),
+                'ip_address' => $request->ip()
             ]);
 
             return redirect()->back()
@@ -352,7 +353,7 @@ class PlayerController extends Controller
     {
         $agent = Auth::user();
 
-        if ($agent->hasRole('Master')) {
+        if ($agent->hasRole('Owner')) {
             if (! empty($request->referral_code)) {
                 $agent = $this->isExistAgent($request->referral_code);
                 if (! $agent) {

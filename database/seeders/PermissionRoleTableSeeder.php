@@ -34,6 +34,10 @@ class PermissionRoleTableSeeder extends Seeder
             'agent_edit',
             'agent_delete',
             'agent_change_password_access',
+            'player_index',
+            'player_create',
+            'player_edit',
+            'player_delete',
             'transfer_log',
             'make_transfer',
         ]);
