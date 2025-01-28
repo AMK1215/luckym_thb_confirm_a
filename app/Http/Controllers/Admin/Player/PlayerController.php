@@ -38,7 +38,7 @@ class PlayerController extends Controller
         $user = Auth::user();
         $agentIds = [$user->id];
 
-        if ($user->hasRole('Master')) {
+        if ($user->hasRole('Owner')) {
             $agentIds = User::where('agent_id', $user->id)->pluck('id')->toArray();
         }
 
@@ -229,7 +229,7 @@ class PlayerController extends Controller
 
             $agent = Auth::user();
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
 
@@ -282,7 +282,7 @@ class PlayerController extends Controller
             $agent = Auth::user();
             $cashOut = $inputs['amount'];
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
             if ($cashOut > $player->balanceFloat) {
