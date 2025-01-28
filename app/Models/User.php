@@ -119,6 +119,12 @@ class User extends Authenticatable implements Wallet
         return $this->roles->flatMap->permissions->pluck('title')->contains($permission);
     }
 
+    public function getRole()
+{
+    // Assuming you have a 'roles' table and a 'role_id' column in your 'users' table
+    return $this->role->title ?? 'Guest'; // Default to 'Guest' if no role is found
+}
+
     public function user()
     {
         return $this->belongsTo(User::class);
