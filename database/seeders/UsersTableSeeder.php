@@ -6,7 +6,6 @@ use App\Enums\TransactionName;
 use App\Enums\UserType;
 use App\Models\User;
 use App\Services\WalletService;
-use App\Settings\AppSetting;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,14 +16,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = $this->createUser(UserType::Admin, 'Owner', 'luckym', '09123456789');
-        (new WalletService)->deposit($admin, 10 * 100_00000, TransactionName::CapitalDeposit);
+        $senior = $this->createUser(UserType::Senior, 'Senior', 'luckym', '09123456789');
+        (new WalletService)->deposit($senior, 10 * 100_00000, TransactionName::CapitalDeposit);
 
-        $master = $this->createUser(UserType::Master, 'Master 1', 'LKM34234', '09112345678', $admin->id);
-        (new WalletService)->transfer($admin, $master, 8 * 100_0000, TransactionName::CreditTransfer);
+        $owner = $this->createUser(UserType::Owner, 'Owner 1', 'LKM34234', '09112345678', $senior->id);
+        (new WalletService)->transfer($senior, $owner, 8 * 100_0000, TransactionName::CreditTransfer);
 
-        $agent_1 = $this->createUser(UserType::Agent, 'Agent 1', 'LMK2341354', '09112345674', $master->id, 'vH4HueE9');
-        (new WalletService)->transfer($master, $agent_1, 1 * 100_0000, TransactionName::CreditTransfer);
+        $agent_1 = $this->createUser(UserType::Agent, 'Agent 1', 'LMK2341354', '09112345674', $owner->id, 'vH4HueE9');
+        (new WalletService)->transfer($owner, $agent_1, 1 * 100_0000, TransactionName::CreditTransfer);
 
         $player_1 = $this->createUser(UserType::Player, 'Player 1', 'LKM000001', '09112345674', $agent_1->id, 'h6G9we4');
         (new WalletService)->transfer($agent_1, $player_1, 1 * 100_0000, TransactionName::CreditTransfer);

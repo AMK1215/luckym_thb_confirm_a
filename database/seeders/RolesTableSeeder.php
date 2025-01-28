@@ -15,13 +15,13 @@ class RolesTableSeeder extends Seeder
         $roles = [
             [
 
-                'title' => 'Owner',
+                'title' => 'Senior',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
 
-                'title' => 'Master',
+                'title' => 'Owner',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -43,7 +43,12 @@ class RolesTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
 
+                'title' => 'Sub Agent',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         Role::insert($roles);

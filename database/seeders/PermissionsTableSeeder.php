@@ -15,12 +15,23 @@ class PermissionsTableSeeder extends Seeder
     {
         $permissions = [
             [
+                'title' => 'senior_access',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'title' => 'owner_access',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'title' => 'master_access',
+                'title' => 'game_type_access',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'title' => 'admin_access',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -30,32 +41,7 @@ class PermissionsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'title' => 'game_type_access',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'title' => 'player_access',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'master_index',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'master_create',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'master_edit',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'master_delete',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -159,17 +145,9 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'title' => 'withdraw_requests',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'title' => 'deposit_requests',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+
         ];
+
 
         Permission::insert($permissions);
     }

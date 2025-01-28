@@ -50,6 +50,9 @@ class User extends Authenticatable implements Wallet
         'type',
         'referral_code',
         'commission',
+        'agent_logo',
+        'site_name',
+        'site_link'
     ];
 
     protected $dispatchesEvents = [
@@ -159,7 +162,7 @@ class User extends Authenticatable implements Wallet
 
     public function scopeRoleLimited($query)
     {
-        if (! Auth::user()->hasRole('Admin')) {
+        if (! Auth::user()->hasRole('Senior')) {
             return $query->where('agent_id', Auth::id());
         }
 

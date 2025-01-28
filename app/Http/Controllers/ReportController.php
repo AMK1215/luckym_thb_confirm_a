@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Admin\Product;
 use App\Models\Webhook\BetNResult;
 use App\Models\Webhook\Result;
-use App\Services\WalletService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,12 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-    private $carbon;
-
-    public function __construct(Carbon $carbon)
-    {
-        $this->carbon = $carbon;
-    }
 
     public function index(Request $request)
     {
@@ -95,7 +88,7 @@ class ReportController extends Controller
 
     private function applyRoleFilter($query, $adminId)
     {
-        if (Auth::user()->hasRole('Master')) {
+        if (Auth::user()->hasRole('Owner')) {
             $query->where('agents.agent_id', $adminId);
         } elseif (Auth::user()->hasRole('Agent')) {
             $query->where('agents.id', $adminId);
