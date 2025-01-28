@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\TransferLog\TransferLogController;
 use App\Http\Controllers\Admin\WithDraw\WithDrawRequestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ReportV2Controller;
 use App\Models\Admin\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -125,6 +126,9 @@ Route::group([
     Route::group(['prefix' => 'report'], function () {
         Route::get('index', [ReportController::class, 'index'])->name('report.index');
         Route::get('/detail/{playerId}', [ReportController::class, 'detail'])->name('report.detail');
+        //v2 with backup
+        Route::get('v2index', [ReportV2Controller::class, 'index'])->name('reportv2.index');
+        Route::get('/detail/{playerId}', [ReportV2Controller::class, 'detail'])->name('reportv2.detail');
     });
 
     // get bet deatil
