@@ -147,7 +147,7 @@ class User extends Authenticatable implements Wallet
 
     public static function adminUser()
     {
-        return self::where('type', UserType::Admin)->first();
+        return self::where('type', UserType::Senior)->first();
     }
 
     public function seamlessTransactions()
