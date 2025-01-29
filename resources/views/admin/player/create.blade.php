@@ -13,7 +13,6 @@
                             </h5>
 
                         </div>
-
                         <div class="ms-auto my-auto mt-lg-0 mt-4">
                             <div class="ms-auto my-auto">
                                 <a class="btn btn-icon btn-2 btn-primary" href="{{ route('admin.player.index') }}">
@@ -27,7 +26,7 @@
                 <div class="card-body">
                     <form role="form" method="POST" class="text-start" action="{{ route('admin.player.store') }}">
                         @csrf
-                        @if(auth()->user()->hasRole('Master'))
+                        @if(auth()->user()->hasRole('Owner'))
                         <div class="custom-form-group">
                             <label for="title">Agent ReferralCode <span class="text-danger">*</span></label>
                             <input type="text" name="referral_code" class="form-control" value="{{old('referral_code')}}">
@@ -108,7 +107,7 @@
 
     console.log(user_name);
 
-    @if(session() - > has('success'))
+    @if(session() -> has('success'))
     Swal.fire({
         title: successMessage,
         icon: "success",
@@ -137,7 +136,7 @@
   </table>
   `
     });
-    @elseif(session() - > has('error'))
+    @elseif(session() -> has('error'))
     Swal.fire({
         icon: 'error',
         title: errorMessage,

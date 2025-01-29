@@ -13,42 +13,36 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $owner_permissions = Permission::whereIn('title', [
-            'owner_access',
-            'master_index',
-            'master_create',
-            'master_edit',
-            'master_delete',
+         //Senior Permissions
+         $senior_permissions = Permission::whereIn('title', [
+            'senior_access',
+            'owner_index',
+            'owner_create',
+            'owner_edit',
+            'owner_delete',
             'transfer_log',
             'make_transfer',
             'game_type_access',
-            'contact',
-            'agent_change_password_access',
-
         ]);
-        Role::findOrFail(1)->permissions()->sync($owner_permissions->pluck('id'));
-        // master permissions
-        $master_permissions = Permission::whereIn('title', [
-            'master_access',
-            'agent_access',
-            'transfer_log',
+        Role::findOrFail(1)->permissions()->sync($senior_permissions->pluck('id'));
+
+        // Owner permissions
+        $owner_permissions = Permission::whereIn('title', [
+            'owner_access',
             'agent_index',
             'agent_create',
             'agent_edit',
             'agent_delete',
+            'agent_change_password_access',
             'player_index',
             'player_create',
             'player_edit',
             'player_delete',
+            'transfer_log',
             'make_transfer',
-            'withdraw_requests',
-            'deposit_requests',
-            'agent_change_password_access',
-
         ]);
-        Role::findOrFail(2)->permissions()->sync($master_permissions->pluck('id'));
+        Role::findOrFail(2)->permissions()->sync($owner_permissions->pluck('id'));
 
-        // Agent gets specific permissions
         $agent_permissions = Permission::whereIn('title', [
             'agent_access',
             'player_index',
@@ -57,12 +51,13 @@ class PermissionRoleTableSeeder extends Seeder
             'player_delete',
             'transfer_log',
             'make_transfer',
-            'payment_type',
-            'withdraw_requests',
-            'deposit_requests',
+            'withdraw',
+            'deposit',
+            'bank',
+            'site_logo',
             'contact',
-            'agent_change_password_access',
         ])->pluck('id');
+
         Role::findOrFail(3)->permissions()->sync($agent_permissions);
 
         $systemWallet = Permission::where('title', 'system_wallet')->first();

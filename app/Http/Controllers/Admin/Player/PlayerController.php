@@ -38,7 +38,7 @@ class PlayerController extends Controller
         $user = Auth::user();
         $agentIds = [$user->id];
 
-        if ($user->hasRole('Master')) {
+        if ($user->hasRole('Owner')) {
             $agentIds = User::where('agent_id', $user->id)->pluck('id')->toArray();
         }
 
@@ -113,6 +113,7 @@ class PlayerController extends Controller
                 'register_ip' => $request->ip(),
                 'user_id' => $player->id,
                 'user_agent' => $request->userAgent(),
+                'ip_address' => $request->ip()
             ]);
 
             return redirect()->back()
@@ -228,7 +229,7 @@ class PlayerController extends Controller
 
             $agent = Auth::user();
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
 
@@ -281,7 +282,7 @@ class PlayerController extends Controller
             $agent = Auth::user();
             $cashOut = $inputs['amount'];
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
             if ($cashOut > $player->balanceFloat) {
@@ -352,7 +353,7 @@ class PlayerController extends Controller
     {
         $agent = Auth::user();
 
-        if ($agent->hasRole('Master')) {
+        if ($agent->hasRole('Owner')) {
             if (! empty($request->referral_code)) {
                 $agent = $this->isExistAgent($request->referral_code);
                 if (! $agent) {

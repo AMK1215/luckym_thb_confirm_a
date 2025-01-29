@@ -4,22 +4,22 @@
  <div class="col-lg-12">
   <div class=" mt-2">
    <div class="d-flex justify-content-between">
-    <a class="btn btn-icon btn-2 btn-primary" href="{{ route('admin.master.index') }}">
+    <a class="btn btn-icon btn-2 btn-primary" href="{{ route('admin.owner.index') }}">
      <span class="btn-inner--icon mt-1"><i class="material-icons">arrow_back</i>Back</span>
     </a>
    </div>
    <div class="card">
-   <h4 class="ms-3">Master Information </h4>
+   <h4 class="ms-3">owner Information </h4>
     <div class="table-responsive">
     <table class="table align-items-center mb-0">
             <tbody>
               <tr>
                 <th>User Name</th>
-                <td>{!! $master->name ?? "" !!}</td>
+                <td>{!! $owner->name ?? "" !!}</td>
               </tr>
               <tr>
                 <th>Phone</th>
-                <td>{!! $master->phone !!}</td>
+                <td>{!! $owner->phone !!}</td>
               </tr>
             </tbody>
           </table>
@@ -48,13 +48,13 @@
      </div>
     </div>
     <div class="card-body">
-    <form action="{{ route('admin.master.makeCashIn',$master->id) }}" method="POST">
+    <form action="{{ route('admin.owner.makeCashIn',$owner->id) }}" method="POST">
       @csrf
   <div class="row">
     <div class="col-md-6">
       <div class="input-group input-group-outline is-valid my-3">
         <label class="form-label">Name</label>
-        <input type="text" class="form-control" name="name" value="{{ $master->name }}" readonly>
+        <input type="text" class="form-control" name="name" value="{{ $owner->name }}" readonly>
 
       </div>
       @error('name')
@@ -64,7 +64,7 @@
     <div class="col-md-6">
       <div class="input-group input-group-outline is-valid my-3">
         <label class="form-label">Current Balance</label>
-        <input type="text" class="form-control" name="blance" value="{{ $master->balanceFloat}}" readonly>
+        <input type="text" class="form-control" name="blance" value="{{ $owner->balanceFloat}}" readonly>
 
       </div>
       @error('phone')
@@ -94,7 +94,6 @@
         @enderror
     </div>
   </div>
-  {{-- submit button --}}
   <div class="row">
     <div class="col-md-12">
       <div class="input-group input-group-outline is-valid my-3">

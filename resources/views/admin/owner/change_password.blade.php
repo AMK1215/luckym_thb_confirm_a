@@ -13,7 +13,7 @@
             </div>
             <div class="ms-auto my-auto mt-lg-0 mt-4">
               <div class="ms-auto my-auto">
-                <a class="btn btn-icon btn-2 btn-primary" href="{{ route('admin.master.index') }}">
+                <a class="btn btn-icon btn-2 btn-primary" href="{{ route('admin.owner.index') }}">
                   <span class="btn-inner--icon mt-1"><i class="material-icons">arrow_back</i>Back</span>
                 </a>
               </div>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form role="form" method="POST" class="text-start" action="{{ route('admin.master.makeChangePassword',$master->id) }}">
+          <form role="form" method="POST" class="text-start" action="{{ route('admin.owner.makeChangePassword',$owner->id) }}">
             @csrf
             <div class="custom-form-group">
               <label for="title">New Password <span class="text-danger">*</span></label>
@@ -49,7 +49,7 @@
 <script>
   var errorMessage = @json(session('error'));
   var successMessage = @json(session('success'));
-  var url = 'https://moneyking77.online/login';
+  var url = 'https://luckymillion.pro/login';
   var name = @json(session('username'));
   var pw = @json(session('password'));
 

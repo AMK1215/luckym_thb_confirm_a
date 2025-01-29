@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PlayerRequest extends FormRequest
+class OwnerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,14 @@ class PlayerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_name' => ['required', 'string', 'unique:users,user_name'],
-            'name' => ['required', 'min:3', 'string'],
-            'password' => ['required', 'min:6'],
-            'amount' => ['nullable', 'numeric'],
-            'phone' => ['required', 'string'],
-            'referral_code' => ['required', 'string']
+            'user_name' => 'required', 'string', 'unique:users,user_name',
+            'name' => 'required|min:3|string',
+            'phone' => ['required', 'regex:/^[0-9]+$/', 'unique:users,phone'],
+            'password' => 'required|min:6',
+            'amount' => 'nullable|numeric',
+            'site_name' => 'nullable|string',
+            'site_link' => 'nullable|string',
+
         ];
     }
 }
