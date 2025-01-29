@@ -121,8 +121,8 @@ class ReportV2Controller extends Controller
 
     private function getDateRange(Request $request): array
     {
-        $startDate = $request->start_date ? Carbon::parse($request->start_date)->startOfDay()->format('Y-m-d H:i') : Carbon::today()->startOfDay()->format('Y-m-d H:i');
-        $endDate = $request->end_date ? Carbon::parse($request->end_date)->endOfDay()->format('Y-m-d H:i') : Carbon::today()->endOfDay()->format('Y-m-d H:i');
+        $startDate = $request->start_date ? Carbon::parse($request->start_date)->startOfDay()->format('Y-m-d H:i') : Carbon::now()->startOfMonth()->format('Y-m-d H:i');
+        $endDate = $request->end_date ? Carbon::parse($request->end_date)->endOfDay()->format('Y-m-d H:i') : Carbon::now()->endOfMonth()->format('Y-m-d H:i');
 
         return [$startDate, $endDate];
     }
