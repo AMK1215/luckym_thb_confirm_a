@@ -19,7 +19,7 @@ class ReportController extends Controller
 
         $results = $this->buildQuery($request, $adminId)->get();
 
-        return view('report.index', compact('results'));
+        return view('reports.index', compact('results'));
     }
 
     public function detail(Request $request, $playerId)
@@ -28,7 +28,7 @@ class ReportController extends Controller
 
         $productTypes = Product::where('is_active', 1)->get();
 
-        return view('report.detail', compact('details', 'productTypes', 'playerId'));
+        return view('reports.detail', compact('details', 'productTypes', 'playerId'));
     }
 
     private function buildQuery(Request $request, $adminId)

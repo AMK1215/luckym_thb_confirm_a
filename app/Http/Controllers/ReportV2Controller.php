@@ -26,7 +26,7 @@ class ReportV2Controller extends Controller
 
         $results = $this->buildQuery($request, $adminId)->get();
 
-        return view('report.v2.index', compact('results'));
+        return view('reports.v2.index', compact('results'));
     }
 
     public function detail(Request $request, $playerId)
@@ -35,7 +35,7 @@ class ReportV2Controller extends Controller
 
         $productTypes = Product::where('is_active', 1)->get();
 
-        return view('report.v2.detail', compact('details', 'productTypes', 'playerId'));
+        return view('reports.v2.detail', compact('details', 'productTypes', 'playerId'));
     }
 
     private function buildQuery(Request $request, $adminId)
@@ -100,7 +100,7 @@ class ReportV2Controller extends Controller
         }elseif (Auth::user()->hasRole('Agent')) {
             $query->where('agents.id', $adminId);
         }
-         
+
     }
 
     private function getPlayerDetails($playerId, $request)
