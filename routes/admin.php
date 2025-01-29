@@ -128,7 +128,11 @@ Route::group([
     Route::get('transer-log', [TransferLogController::class, 'index'])->name('transferLog');
     Route::group(['prefix' => 'report'], function () {
         Route::get('index', [ReportController::class, 'index'])->name('report.index');
-        Route::get('/detail/{playerId}', [ReportController::class, 'detail'])->name('reportv1.detail');
+        Route::get('/detail/{playerId}', [ReportController::class, 'detail'])->name('report.detail');
+    
+    });
+
+    Route::group(['prefix' => 'reportv2'], function () {
         //v2 with backup
         Route::get('v2index', [ReportV2Controller::class, 'index'])->name('reportv2.index');
         Route::get('/detail/{playerId}', [ReportV2Controller::class, 'detail'])->name('reportv2.detail');
