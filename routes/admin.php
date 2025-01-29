@@ -129,7 +129,7 @@ Route::group([
     Route::group(['prefix' => 'report'], function () {
         Route::get('index', [ReportController::class, 'index'])->name('report.index');
         Route::get('/detail/{playerId}', [ReportController::class, 'detail'])->name('report.detail');
-    
+
     });
 
     Route::group(['prefix' => 'reportv2'], function () {

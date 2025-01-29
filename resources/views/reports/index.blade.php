@@ -82,7 +82,7 @@
                                     <td> <span
                                             class="{{ $profit > 1 ? 'text-success' : 'text-danger' }}">{{ number_format($profit, 2) }}</span>
                                     </td>
-                                    <a href="{{ route('admin.reportv1.detail', $result->user_id) }}"
+                                    <a href="{{ route('admin.report.detail', $result->user_id) }}"
                                         class="btn btn-primary">Detail</a>
 
                                 </tr>
