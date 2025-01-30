@@ -15,11 +15,10 @@ class ArchiveOldBetNResult extends Command
     public function handle()
     {
         // Define the date range from the start of the previous day to now
-        // $startOfDay = now()->subDays(1)->startOfDay();
-        // $endOfDay = now();
-        $startOfDay = now()->setTime(8, 30, 0); // Today at 9:00 AM
-        $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
-
+        $startOfDay = now()->subDays(2)->startOfDay();
+        $endOfDay = now();
+        // $startOfDay = now()->setTime(8, 30, 0); // Today at 9:00 AM
+        // $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
 
         try {
             DB::table('bet_n_results')
@@ -28,10 +27,11 @@ class ArchiveOldBetNResult extends Command
                 ->chunk(1000, function ($oldResults) {
                     if ($oldResults->isEmpty()) {
                         $this->info('No bet_n_results found to archive.');
+
                         return;
                     }
 
-                    $this->info(count($oldResults) . ' bet_n_results found for archiving.');
+                    $this->info(count($oldResults).' bet_n_results found for archiving.');
 
                     DB::transaction(function () use ($oldResults) {
                         // Insert old results into the result_backups table in smaller batches
@@ -64,7 +64,7 @@ class ArchiveOldBetNResult extends Command
                                     })->toArray()
                                 );
                             } catch (\Exception $e) {
-                                Log::error('Error inserting BetNresults into result_backups: ' . $e->getMessage());
+                                Log::error('Error inserting BetNresults into result_backups: '.$e->getMessage());
                                 $this->error('Failed to insert some BetNresults. Check logs for details.');
                             }
                         });
@@ -76,7 +76,7 @@ class ArchiveOldBetNResult extends Command
                             $resultIds = $oldResults->pluck('id')->toArray();
                             DB::table('results')->whereIn('id', $resultIds)->delete();
                         } catch (\Exception $e) {
-                            Log::error('Error deleting old BetNresults: ' . $e->getMessage());
+                            Log::error('Error deleting old BetNresults: '.$e->getMessage());
                             $this->error('Failed to delete some old BetNresults. Check logs for details.');
                         }
 
@@ -84,12 +84,12 @@ class ArchiveOldBetNResult extends Command
                         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
                     });
 
-                    $this->info(count($oldResults) . ' results have been archived and deleted successfully.');
+                    $this->info(count($oldResults).' results have been archived and deleted successfully.');
                 });
 
             $this->info('BetNResult archiving complete.');
         } catch (\Exception $e) {
-            Log::error('Error archiving BetNresults: ' . $e->getMessage());
+            Log::error('Error archiving BetNresults: '.$e->getMessage());
             $this->error('An error occurred while archiving BetNresults. Check logs for details.');
         }
     }

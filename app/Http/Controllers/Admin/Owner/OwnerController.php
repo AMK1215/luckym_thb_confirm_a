@@ -55,11 +55,12 @@ class OwnerController extends Controller
             '403 Forbidden | You cannot access this page because you do not have permission'
         );
 
-        $adminId = auth()->id(); 
+        $adminId = auth()->id();
 
         $agents = User::with(['createdAgents', 'createdAgents.players'])
-            ->where('id', $adminId) 
+            ->where('id', $adminId)
             ->get();
+
         return view('admin.owner.user_list', compact('agents'));
     }
 
@@ -100,7 +101,7 @@ class OwnerController extends Controller
         if ($request->agent_logo) {
             $image = $request->file('agent_logo');
             $ext = $image->getClientOriginalExtension();
-            $filename = uniqid('logo') . '.' . $ext; // Generate a unique filename
+            $filename = uniqid('logo').'.'.$ext; // Generate a unique filename
             $image->move(public_path('assets/img/logo/'), $filename); // Save the file
             $userPrepare['agent_logo'] = $filename;
         }
@@ -140,7 +141,7 @@ class OwnerController extends Controller
     {
         $randomNumber = mt_rand(10000000, 99999999);
 
-        return 'LKM' . $randomNumber;
+        return 'LKM'.$randomNumber;
     }
 
     /**
@@ -171,7 +172,7 @@ class OwnerController extends Controller
         );
 
         $owner = User::find($id);
-      
+
         return view('admin.owner.edit', compact('owner'));
     }
 
@@ -299,7 +300,7 @@ class OwnerController extends Controller
 
         return redirect()->back()->with(
             'success',
-            'User ' . ($user->status == 1 ? 'activate' : 'inactive') . ' successfully'
+            'User '.($user->status == 1 ? 'activate' : 'inactive').' successfully'
         );
     }
 
@@ -316,17 +317,17 @@ class OwnerController extends Controller
         $request->validate([
             'user_name' => 'nullable|string|max:255',
             'name' => 'required|string|max:255',
-            'phone' => 'required|regex:/^[0-9]+$/|unique:users,phone,' . $id,
+            'phone' => 'required|regex:/^[0-9]+$/|unique:users,phone,'.$id,
             'site_link' => 'nullable|string',
         ]);
 
         if ($request->file('agent_logo')) {
-            if ($user->agent_logo && File::exists(public_path('assets/img/logo/' . $user->agent_logo))) {
-                File::delete(public_path('assets/img/logo/' . $user->agent_logo));
+            if ($user->agent_logo && File::exists(public_path('assets/img/logo/'.$user->agent_logo))) {
+                File::delete(public_path('assets/img/logo/'.$user->agent_logo));
             }
 
             $image = $request->file('agent_logo');
-            $filename = uniqid('logo') . '.' . $image->getClientOriginalExtension();
+            $filename = uniqid('logo').'.'.$image->getClientOriginalExtension();
             $image->move(public_path('assets/img/logo/'), $filename);
             $user->agent_logo = $filename;
         } else {
@@ -375,7 +376,6 @@ class OwnerController extends Controller
             ->with('username', $master->user_name);
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
@@ -387,7 +387,7 @@ class OwnerController extends Controller
 
         $agentIds = User::where('agent_id', $owner->id)->pluck('id');
         User::whereIn('agent_id', $agentIds)->delete();
-      
+
         User::where('agent_id', $owner->id)->delete();
         $owner->delete();
 

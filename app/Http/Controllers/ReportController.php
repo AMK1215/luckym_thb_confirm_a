@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
-
     public function index(Request $request)
     {
         $adminId = auth()->id();
@@ -90,7 +89,7 @@ class ReportController extends Controller
     {
         if (Auth::user()->hasRole('Owner')) {
             $query->where('agents.agent_id', $adminId);
-        }elseif (Auth::user()->hasRole('Agent')) {
+        } elseif (Auth::user()->hasRole('Agent')) {
             $query->where('agents.id', $adminId);
         }
     }

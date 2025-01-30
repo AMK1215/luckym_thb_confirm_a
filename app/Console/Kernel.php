@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-          // Run the 'archive:old-result' command daily at midnight 12:00 AM
+        // Run the 'archive:old-result' command daily at midnight 12:00 AM
         $schedule->command('archive:old-result')->dailyAt('00:00');
 
         //schedules the archive:old-bet-n-result command to run daily at 1:00 AM.

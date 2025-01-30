@@ -74,9 +74,9 @@ class BannerController extends Controller
             ]);
         } elseif ($type === 'all') {
             $banner = Banner::create([
-                    'mobile_image' => $mobile_image,
-                    'desktop_image' => $desktop_image,
-                ]);
+                'mobile_image' => $mobile_image,
+                'desktop_image' => $desktop_image,
+            ]);
             foreach ($user->agents as $agent) {
                 BannerAgent::create([
                     'banner_id' => $banner->id,
@@ -141,7 +141,7 @@ class BannerController extends Controller
             $banner->bannerAgents()->delete();
             BannerAgent::create([
                 'agent_id' => $agentId,
-                'banner_id' => $banner->id
+                'banner_id' => $banner->id,
             ]);
 
         } elseif ($request->type === 'all') {

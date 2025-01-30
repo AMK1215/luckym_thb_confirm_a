@@ -122,7 +122,7 @@ class ContactController extends Controller
             'link' => 'required',
             'contact_type_id' => 'required|exists:contact_types,id',
         ]);
-        
+
         $contact->update($data);
 
         if ($request->type === 'single') {
@@ -130,7 +130,7 @@ class ContactController extends Controller
             $contact->contactAgents()->delete();
             ContactAgent::create([
                 'agent_id' => $agentId,
-                'contact_id' => $contact->id
+                'contact_id' => $contact->id,
             ]);
 
         } elseif ($request->type === 'all') {

@@ -14,10 +14,10 @@ class AdminLogoMiddleware
             $user = Auth::user();
 
             $logoFilename = $user->agent_logo;
-            if($user->hasRole('Agent') || $user->hasRole('Sub Agent')){
+            if ($user->hasRole('Agent') || $user->hasRole('Sub Agent')) {
                 $siteName = 'Agent Dashboard';
-            }else{
-                $siteName = $user->site_name ?? 'LuckyM'; 
+            } else {
+                $siteName = $user->site_name ?? 'LuckyM';
             }
 
             $adminLogo = $logoFilename
@@ -26,7 +26,7 @@ class AdminLogoMiddleware
 
             View::share([
                 'adminLogo' => $adminLogo,
-                'siteName' => $siteName, 
+                'siteName' => $siteName,
             ]);
         }
 
