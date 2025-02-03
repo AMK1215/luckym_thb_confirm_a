@@ -128,7 +128,7 @@ class BannerTextController extends Controller
             $text->bankAgents()->delete();
             BannerTextAgent::create([
                 'agent_id' => $agentId,
-                'banner_text_id' => $text->id
+                'banner_text_id' => $text->id,
             ]);
         } elseif ($request->type === 'all') {
             foreach ($user->agents as $agent) {
@@ -138,6 +138,7 @@ class BannerTextController extends Controller
                 );
             }
         }
+
         return redirect(route('admin.text.index'))->with('success', 'Banner Text Updated Successfully.');
     }
 

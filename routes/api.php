@@ -48,8 +48,7 @@ Route::post('Result', [BetResultController::class, 'handleResult']);
 Route::post('CancelBet', [CancelBetController::class, 'handleCancelBet']);
 Route::post('Adjustment', [AdjustmentController::class, 'handleAdjustment']);
 Route::post('Reward', [RewardController::class, 'handleReward']);
-Route::post('PullLog', [WagerController::class, 'LogCheck']);
-Route::delete('/results-d', [WagerController::class, 'deleteResults']);
+
 Route::post('GetGameProvider', [GetGameProviderController::class, 'fetchGameProviders']);
 Route::post('GetGameListByProvider', [GetGameListByProviderController::class, 'fetchGameListByProvider']);
 

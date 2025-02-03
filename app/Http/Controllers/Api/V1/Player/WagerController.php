@@ -12,7 +12,7 @@ use Illuminate\Support\Traits\Purse;
 
 class WagerController extends Controller
 {
-    use HttpResponses, Purse;
+    use HttpResponses;
 
     // to do utc time
     public function index(Request $request)

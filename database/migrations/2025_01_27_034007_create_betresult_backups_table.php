@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('betresult_backups', function (Blueprint $table) {
-           $table->id();
+            $table->id();
             $table->unsignedBigInteger('user_id'); // User_id
             $table->string('operator_id', 20);
             $table->string('request_date_time', 50); // Using string for format flexibility

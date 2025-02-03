@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin\Product;
 use App\Models\Admin\BetresultBackup;
+use App\Models\Admin\Product;
 use App\Models\Admin\ResultBackup;
 use App\Services\WalletService;
 use Carbon\Carbon;
@@ -97,7 +97,7 @@ class ReportV2Controller extends Controller
     {
         if (Auth::user()->hasRole('Owner')) {
             $query->where('agents.agent_id', $adminId);
-        }elseif (Auth::user()->hasRole('Agent')) {
+        } elseif (Auth::user()->hasRole('Agent')) {
             $query->where('agents.id', $adminId);
         }
 
@@ -105,8 +105,8 @@ class ReportV2Controller extends Controller
 
     private function getPlayerDetails($playerId, $request)
     {
-        $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d H:i') : Carbon::today()->startOfDay()->format('Y-m-d H:i');
-        $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d H:i') : Carbon::today()->endOfDay()->format('Y-m-d H:i');
+        $startDate = $request->start_date ? Carbon::parse($request->start_date)->format('Y-m-d H:i') : Carbon::today()->startOfMonth()->format('Y-m-d H:i');
+        $endDate = $request->end_date ? Carbon::parse($request->end_date)->format('Y-m-d H:i') : Carbon::today()->endOfMonth()->format('Y-m-d H:i');
 
         $combinedSubquery = DB::table('result_backups')
             ->select(

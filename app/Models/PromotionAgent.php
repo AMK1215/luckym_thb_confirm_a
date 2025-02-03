@@ -9,7 +9,6 @@ class PromotionAgent extends Model
 {
     use HasFactory;
 
-
     protected $fillable = ['id', 'agent_id', 'promotion_id'];
 
     public function agent()

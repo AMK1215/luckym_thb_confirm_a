@@ -52,7 +52,7 @@ class User extends Authenticatable implements Wallet
         'commission',
         'agent_logo',
         'site_name',
-        'site_link'
+        'site_link',
     ];
 
     protected $dispatchesEvents = [
@@ -123,10 +123,10 @@ class User extends Authenticatable implements Wallet
     }
 
     public function getRole()
-{
-    // Assuming you have a 'roles' table and a 'role_id' column in your 'users' table
-    return $this->role->title ?? 'Guest'; // Default to 'Guest' if no role is found
-}
+    {
+        // Assuming you have a 'roles' table and a 'role_id' column in your 'users' table
+        return $this->role->title ?? 'Guest'; // Default to 'Guest' if no role is found
+    }
 
     public function user()
     {

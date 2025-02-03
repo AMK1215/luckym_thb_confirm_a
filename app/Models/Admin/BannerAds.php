@@ -20,7 +20,6 @@ class BannerAds extends Model
 
     protected $appends = ['mobile_image_url', 'desktop_image_url'];
 
-
     public function agent()
     {
         return $this->belongsTo(User::class, 'agent_id'); // The admin that owns the banner
@@ -28,14 +27,14 @@ class BannerAds extends Model
 
     public function getMobileImageUrlAttribute()
     {
-        return asset('assets/img/banners_ads/' . $this->mobile_image);
+        return asset('assets/img/banners_ads/'.$this->mobile_image);
     }
 
     public function getDesktopImageUrlAttribute()
     {
-        return asset('assets/img/banners_ads/' . $this->desktop_image);
+        return asset('assets/img/banners_ads/'.$this->desktop_image);
     }
-    
+
     public function bannerAdsAgents()
     {
         return $this->hasMany(BannerAdsAgent::class);

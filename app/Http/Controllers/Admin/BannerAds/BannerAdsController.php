@@ -144,7 +144,7 @@ class BannerAdsController extends Controller
             $bannerAds->bannerAdsAgents()->delete();
             BannerAdsAgent::create([
                 'agent_id' => $agentId,
-                'banner_ads_id' => $bannerAds->id
+                'banner_ads_id' => $bannerAds->id,
             ]);
         } elseif ($request->type === 'all') {
             foreach ($user->agents as $agent) {
@@ -154,6 +154,7 @@ class BannerAdsController extends Controller
                 );
             }
         }
+
         return redirect(route('admin.bannerAds.index'))->with('success', 'Ads Banner Image Updated.');
     }
 
@@ -209,7 +210,7 @@ class BannerAdsController extends Controller
             $updateData['desktop_image'] = $bannerAds->desktop_image;
         }
         $adsbanner = $bannerAds->update($updateData);
-     
+
         return $adsbanner;
     }
 }

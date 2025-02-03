@@ -15,11 +15,10 @@ class ArchiveOldResult extends Command
     public function handle()
     {
         // Define the date range from the start of the previous day to now
-        // $startOfDay = now()->subDays(1)->startOfDay();
-        // $endOfDay = now();
-        $startOfDay = now()->setTime(8, 30, 0); // Today at 9:00 AM
-        $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
-
+        $startOfDay = now()->subDays(2)->startOfDay();
+        $endOfDay = now();
+        // $startOfDay = now()->setTime(8, 30, 0); // Today at 9:00 AM
+        // $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
 
         try {
             DB::table('results')
@@ -28,10 +27,11 @@ class ArchiveOldResult extends Command
                 ->chunk(1000, function ($oldResults) {
                     if ($oldResults->isEmpty()) {
                         $this->info('No results found to archive.');
+
                         return;
                     }
 
-                    $this->info(count($oldResults) . ' results found for archiving.');
+                    $this->info(count($oldResults).' results found for archiving.');
 
                     DB::transaction(function () use ($oldResults) {
                         // Insert old results into the result_backups table in smaller batches
@@ -63,7 +63,7 @@ class ArchiveOldResult extends Command
                                     })->toArray()
                                 );
                             } catch (\Exception $e) {
-                                Log::error('Error inserting results into result_backups: ' . $e->getMessage());
+                                Log::error('Error inserting results into result_backups: '.$e->getMessage());
                                 $this->error('Failed to insert some results. Check logs for details.');
                             }
                         });
@@ -75,7 +75,7 @@ class ArchiveOldResult extends Command
                             $resultIds = $oldResults->pluck('id')->toArray();
                             DB::table('results')->whereIn('id', $resultIds)->delete();
                         } catch (\Exception $e) {
-                            Log::error('Error deleting old results: ' . $e->getMessage());
+                            Log::error('Error deleting old results: '.$e->getMessage());
                             $this->error('Failed to delete some old results. Check logs for details.');
                         }
 
@@ -83,12 +83,12 @@ class ArchiveOldResult extends Command
                         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
                     });
 
-                    $this->info(count($oldResults) . ' results have been archived and deleted successfully.');
+                    $this->info(count($oldResults).' results have been archived and deleted successfully.');
                 });
 
             $this->info('Result archiving complete.');
         } catch (\Exception $e) {
-            Log::error('Error archiving results: ' . $e->getMessage());
+            Log::error('Error archiving results: '.$e->getMessage());
             $this->error('An error occurred while archiving results. Check logs for details.');
         }
     }

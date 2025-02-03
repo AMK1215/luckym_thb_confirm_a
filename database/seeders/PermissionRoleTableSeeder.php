@@ -13,8 +13,8 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run(): void
     {
-         //Senior Permissions
-         $senior_permissions = Permission::whereIn('title', [
+        //Senior Permissions
+        $senior_permissions = Permission::whereIn('title', [
             'senior_access',
             'owner_index',
             'owner_create',

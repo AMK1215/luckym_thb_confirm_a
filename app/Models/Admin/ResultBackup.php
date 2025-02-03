@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class ResultBackup extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
         'player_name',
@@ -34,8 +35,8 @@ class ResultBackup extends Model
     protected $casts = [
         'bet_ids' => 'array', // Cast to array for JSON
     ];
-    protected $dates = ['created_at', 'updated_at'];
 
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * Get the user associated with the result.

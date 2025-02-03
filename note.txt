@@ -14,6 +14,8 @@ Vivo Gaming = There is no GetGameList for ProductID = 1035-VIVO_GAMING with game
 Vivo Gaming = There is no GetGameList for ProductID = 1035-VIVO_GAMING with game type = 2-LIVE_CASINO
 
 King 855 = There is no GetGameList for ProductID = 1038-CT855 with game type = 2-LIVE_CASINO
+Route::post('PullLog', [WagerController::class, 'LogCheck']);
+Route::delete('/results-d', [WagerController::class, 'deleteResults']);
 ASIA_GAMING= There is no GetGameList for ProductID = 1001-ASIA_GAMING with game type = 2-LIVE_CASINO
 
 SIMPLE_PLAY= There is no GetGameList for ProductID = 1089-SIMPLE_PLAY with game type = 8-FISHING

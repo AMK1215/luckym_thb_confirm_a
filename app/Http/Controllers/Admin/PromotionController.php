@@ -97,6 +97,7 @@ class PromotionController extends Controller
         if (! $promotion) {
             return redirect()->back()->with('error', 'Promotion Not Found');
         }
+
         return view('admin.promotions.show', compact('promotion'));
     }
 
@@ -134,7 +135,7 @@ class PromotionController extends Controller
             $promotion->promotionAgents()->delete();
             PromotionAgent::create([
                 'agent_id' => $agentId,
-                'promotion_id' => $promotion->id
+                'promotion_id' => $promotion->id,
             ]);
         } elseif ($request->type === 'all') {
             foreach ($user->agents as $agent) {
@@ -163,7 +164,7 @@ class PromotionController extends Controller
         return redirect()->back()->with('success', 'Promotion Deleted.');
     }
 
-     /**
+    /**
      * Delete images if new ones are provided in the request.
      */
     private function deleteImagesIfProvided(Promotion $promotion, Request $request): void
@@ -173,7 +174,7 @@ class PromotionController extends Controller
         }
     }
 
-        /**
+    /**
      * Prepare data for updating the banner.
      */
     private function UpdateData(Request $request, Promotion $promotion): Promotion

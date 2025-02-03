@@ -131,7 +131,7 @@ class BankController extends Controller
             $bank->bankAgents()->delete();
             BankAgent::create([
                 'agent_id' => $agentId,
-                'bank_id' => $bank->id
+                'bank_id' => $bank->id,
             ]);
         } elseif ($request->type === 'all') {
             foreach ($user->agents as $agent) {
