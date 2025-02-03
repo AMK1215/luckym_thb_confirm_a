@@ -103,7 +103,7 @@ Route::group([
     Route::put('agent/{id}/ban', [AgentController::class, 'banAgent'])->name('agent.ban');
     Route::get('agent-changepassword/{id}', [AgentController::class, 'getChangePassword'])->name('agent.getChangePassword');
     Route::post('agent-changepassword/{id}', [AgentController::class, 'makeChangePassword'])->name('agent.makeChangePassword');
-    
+
     Route::resource('owner', OwnerController::class);
     Route::get('owner-player-list', [OwnerController::class, 'OwnerPlayerList'])->name('GetOwnerPlayerList');
     Route::get('owner-cash-in/{id}', [OwnerController::class, 'getCashIn'])->name('owner.getCashIn');
@@ -129,6 +129,10 @@ Route::group([
     Route::group(['prefix' => 'report'], function () {
         Route::get('index', [ReportController::class, 'index'])->name('report.index');
         Route::get('/detail/{playerId}', [ReportController::class, 'detail'])->name('report.detail');
+
+    });
+
+    Route::group(['prefix' => 'reportv2'], function () {
         //v2 with backup
         Route::get('v2index', [ReportV2Controller::class, 'index'])->name('reportv2.index');
         Route::get('/detail/{playerId}', [ReportV2Controller::class, 'detail'])->name('reportv2.detail');

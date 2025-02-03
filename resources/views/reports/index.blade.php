@@ -82,8 +82,11 @@
                                     <td> <span
                                             class="{{ $profit > 1 ? 'text-success' : 'text-danger' }}">{{ number_format($profit, 2) }}</span>
                                     </td>
-                                    {{-- <td><a href="{{ route('admin.report.detail', $result->user_id) }}"
-                                            class="btn btn-primary">Detail</a></td> --}}
+                                    <td>
+                                        <a href="{{ route('admin.report.detail', $result->user_id) }}"
+                                            class="btn btn-primary">Detail</a>
+                                    </td>
+
                                 </tr>
                             @endforeach
 

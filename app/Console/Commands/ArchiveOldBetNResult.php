@@ -15,10 +15,10 @@ class ArchiveOldBetNResult extends Command
     public function handle()
     {
         // Define the date range from the start of the previous day to now
-        $startOfDay = now()->subDays(1)->startOfDay();
-        $endOfDay = now();
-        // $startOfDay = now()->setTime(8, 45, 0); // Today at 9:00 AM
-        // $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
+        // $startOfDay = now()->subDays(1)->startOfDay();
+        // $endOfDay = now();
+        $startOfDay = now()->setTime(8, 30, 0); // Today at 9:00 AM
+        $endOfDay = now()->setTime(10, 0, 0); // Today at 10:00 AM
 
 
         try {
