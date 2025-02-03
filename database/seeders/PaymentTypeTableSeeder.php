@@ -14,44 +14,52 @@ class PaymentTypeTableSeeder extends Seeder
     {
         $types = [
             [
-                'name' => 'AYA Bank',
-                'image' => 'ayabank.png',
+                'name' => 'Kasikorn Bank (K plus)',
+                'image' => 'KPLUS.png',
             ],
             [
-                'name' => 'AYA Pay',
-                'image' => 'ayapay.png',
+                'name' => 'Siam Commercial Bank (SCB)',
+                'image' => 'SCB.png',
             ],
             [
-                'name' => 'CB Bank',
-                'image' => 'cbbank.png',
+                'name' => 'TMBTHANACHART BANK (TTB)',
+                'image' => 'TTB.png',
             ],
             [
-                'name' => 'CB Pay',
-                'image' => 'cbpay.png',
+                'name' => 'Krungthai Bank (KTB)',
+                'image' => 'KTB.png',
             ],
             [
-                'name' => 'KBZ Bank',
-                'image' => 'kbzbank.webp',
+                'name' => 'Bangkok Bank(BBL)',
+                'image' => 'BBL.png',
             ],
             [
-                'name' => 'KBZ Pay',
-                'image' => 'kpay.png',
+                'name' => 'United Overseas Bank(UOB)',
+                'image' => 'UOB.png',
             ],
             [
-                'name' => 'MAB Bank',
-                'image' => 'mabbank.png',
+                'name' => 'Kiatnakin Phatra Bank(KKP)',
+                'image' => 'KKP.png',
             ],
             [
-                'name' => 'UAB Pay',
-                'image' => 'uabpay.png',
+                'name' => 'Government Savings Bank(GSB)',
+                'image' => 'GSB.png',
             ],
             [
-                'name' => 'WAVE Pay',
-                'image' => 'wave.png',
+                'name' => 'Bank of Ayudhya (BAY)',
+                'image' => 'BAY.png',
             ],
             [
-                'name' => 'YOMA Bank',
-                'image' => 'yomabank.png',
+                'name' => 'Bank for Agriculture and Agricultural Cooperatives(BBAC)',
+                'image' => 'BBAC.png',
+            ],
+            [
+                'name' => 'Commerce International Merchant Bank(CIMB)',
+                'image' => 'CIMB.png',
+            ],
+            [
+                'name' => 'True Money Wallet',
+                'image' => 'truemoney.png',
             ],
         ];
 
