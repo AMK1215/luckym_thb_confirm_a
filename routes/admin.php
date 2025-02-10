@@ -140,8 +140,13 @@ Route::group([
     });
 
 
-    Route::post('/archive-results', [ResultArchiveController::class, 'archiveResults'])->name('archive.results');
+    // report all backup
      Route::get('/resultsdata', [ResultArchiveController::class, 'getAllResults'])->name('backup_results.index');
+     Route::post('/archive-results', [ResultArchiveController::class, 'archiveResults'])->name('archive.results');
+
+     Route::get('/betNresultsdata', [ResultArchiveController::class, 'getAllBetNResults'])->name('backup_bet_n_results.index');
+
+     Route::post('/archive-betNresults', [ResultArchiveController::class, 'archiveBetNResults'])->name('archive.bet_n_result');
 
 
     // get bet deatil

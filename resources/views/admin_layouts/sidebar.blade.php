@@ -23,7 +23,14 @@
         <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.backup_results.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1"> ReportBackUp </span>
+                <span class="sidenav-normal  ms-2  ps-1"> ReportBackUp(result) </span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white " href="{{ route('admin.backup_bet_n_results.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> ReportBackUp(bet_n_result) </span>
             </a>
         </li>
 
