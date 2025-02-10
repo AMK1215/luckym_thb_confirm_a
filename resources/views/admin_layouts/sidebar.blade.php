@@ -21,50 +21,58 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link text-white " href="{{ route('admin.backup_results.index') }}">
+                <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
+                <span class="sidenav-normal  ms-2  ps-1"> ReportBackUp </span>
+            </a>
+        </li>
+
+
+        <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.reportv2.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
                 <span class="sidenav-normal  ms-2  ps-1"> V2-Win/lose Report </span>
             </a>
         </li>
         @can('withdraw_requests')
-        <li class="nav-item">
-            <a class="nav-link text-white " href="{{ route('admin.agent.withdraw') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1">WithDraw Requests</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.agent.withdraw') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">WithDraw Requests</span>
+                </a>
+            </li>
         @endcan
         @can('deposit_requests')
-        <li class="nav-item">
-            <a class="nav-link text-white " href="{{ route('admin.agent.deposit') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1">Deposit Requests</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.agent.deposit') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Deposit Requests</span>
+                </a>
+            </li>
         @endcan
         @can('owner_index')
-        <li class="nav-item">
-            <a class="nav-link text-white " href="{{ route('admin.owner.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Owner List</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.owner.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> Owner List</span>
+                </a>
+            </li>
         @endcan
         @can('agent_index')
-        <li class="nav-item">
-            <a class="nav-link text-white " href="{{ route('admin.agent.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1">Agent List</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.agent.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Agent List</span>
+                </a>
+            </li>
         @endcan
         @can('player_index')
-        <li class="nav-item">
-            <a class="nav-link text-white " href="{{ route('admin.player.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1">Player List</span>
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.player.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Player List</span>
+                </a>
+            </li>
         @endcan
         <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.transferLog') }}">
@@ -73,28 +81,28 @@
             </a>
         </li>
         @canany(['owner_access', 'agent_access'])
-        <li class="nav-item ">
-            <a class="nav-link text-white " href="{{ route('admin.banks.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fa-solid fa-bank"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1">Banks</span>
-            </a>
-        </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white " href="{{ route('admin.banks.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-bank"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">Banks</span>
+                </a>
+            </li>
         @endcanany
         @canany(['owner_access', 'agent_access'])
-        <li class="nav-item ">
-            <a class="nav-link text-white " href="{{ route('admin.contact.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fas fa-address-book"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Contact </span>
-            </a>
-        </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white " href="{{ route('admin.contact.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fas fa-address-book"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> Contact </span>
+                </a>
+            </li>
         @endcanany
         @canany(['owner_access', 'agent_access'])
-        <li class="nav-item ">
-            <a class="nav-link text-white " href="{{ route('admin.bonus.index') }}">
-                <span class="sidenav-mini-icon"> <i class="fa fa-gift"></i> </span>
-                <span class="sidenav-normal  ms-2  ps-1"> Bonus </span>
-            </a>
-        </li>
+            <li class="nav-item ">
+                <a class="nav-link text-white " href="{{ route('admin.bonus.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa fa-gift"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1"> Bonus </span>
+                </a>
+            </li>
         @endcan
         <hr class="horizontal light mt-0">
 
@@ -107,31 +115,31 @@
             <div class="collapse" id="dashboardsExamples">
                 <ul class="nav">
                     @canany(['owner_access', 'agent_access'])
-                    <li class="nav-item ">
-                        <a class="nav-link text-white " href="{{ route('admin.banners.index') }}">
-                            <span class="sidenav-mini-icon"> <i class="fa fa-flag"></i> </span>
-                            <span class="sidenav-normal  ms-2  ps-1"> Banner </span>
-                        </a>
-                    </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white " href="{{ route('admin.banners.index') }}">
+                                <span class="sidenav-mini-icon"> <i class="fa fa-flag"></i> </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Banner </span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item ">
-                        <a class="nav-link text-white " href="{{ route('admin.bannerAds.index') }}">
-                            <span class="sidenav-mini-icon"> <i class="fa fa-audio-description"></i></span>
-                            <span class="sidenav-normal  ms-2  ps-1"> Ads Banner </span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white " href="{{ route('admin.text.index') }}">
-                            <span class="sidenav-mini-icon"> <i class="fa fa-text-width"></i> </span>
-                            <span class="sidenav-normal  ms-2  ps-1"> Banner Text </span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link text-white " href="{{ route('admin.promotions.index') }}">
-                            <span class="sidenav-mini-icon"> <i class="fas fa-bullhorn"></i> </span>
-                            <span class="sidenav-normal  ms-2  ps-1"> Promotions </span>
-                        </a>
-                    </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white " href="{{ route('admin.bannerAds.index') }}">
+                                <span class="sidenav-mini-icon"> <i class="fa fa-audio-description"></i></span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Ads Banner </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white " href="{{ route('admin.text.index') }}">
+                                <span class="sidenav-mini-icon"> <i class="fa fa-text-width"></i> </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Banner Text </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-white " href="{{ route('admin.promotions.index') }}">
+                                <span class="sidenav-mini-icon"> <i class="fas fa-bullhorn"></i> </span>
+                                <span class="sidenav-normal  ms-2  ps-1"> Promotions </span>
+                            </a>
+                        </li>
                     @endcanany
                     <li class="nav-item ">
                         <a class="nav-link text-white " href="{{ route('admin.products.index') }}">

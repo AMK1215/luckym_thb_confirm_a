@@ -9,15 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 trait UseWebhook
 {
-    // public function processTransfer(User $from, User $to, TransactionName $transactionName, float $amount)
-    // {
-    //     app(WalletService::class)->transfer(
-    //         $from,
-    //         $to,
-    //         abs($amount),
-    //         $transactionName
-    //     );
-    // }
+
 
     public function processTransfer(User $from, User $to, TransactionName $transactionName, float $amount)
     {

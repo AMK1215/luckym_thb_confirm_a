@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\WithDraw\WithDrawRequestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportV2Controller;
+use App\Http\Controllers\ResultArchiveController;
+
 use App\Models\Admin\Role;
 use Illuminate\Support\Facades\Route;
 
@@ -136,6 +138,11 @@ Route::group([
         Route::get('v2index', [ReportV2Controller::class, 'index'])->name('reportv2.index');
         Route::get('/detail/{playerId}', [ReportV2Controller::class, 'detail'])->name('reportv2.detail');
     });
+
+
+    Route::post('/archive-results', [ResultArchiveController::class, 'archiveResults'])->name('archive.results');
+     Route::get('/resultsdata', [ResultArchiveController::class, 'getAllResults'])->name('backup_results.index');
+
 
     // get bet deatil
     Route::get('get-bet-detail', [GetBetDetailController::class, 'index'])->name('getBetDetail');

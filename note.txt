@@ -1,6 +1,12 @@
 
 php artisan migrate --path=/database/migrations/2024_10_14_042230_add_version_to_wallets_table.php
 
+
+php artisan migrate --path=/database/migrations/2025_01_27_024654_create_result_backups_table.php
+
+php artisan migrate --path=/database/migrations/2025_01_27_034007_create_betresult_backups_table.php
+
+
 // to remove laravel log
 php -r "file_put_contents('/var/www/luckym_thb_confirm_a/storage/logs/laravel.log', '');"
 // created dev branch for kzt
