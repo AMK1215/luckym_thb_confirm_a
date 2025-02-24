@@ -6,6 +6,16 @@ php artisan migrate --path=/database/migrations/2025_01_27_024654_create_result_
 
 php artisan migrate --path=/database/migrations/2025_01_27_034007_create_betresult_backups_table.php
 
+sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
+
+sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
+
+sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
+sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
+
+sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/banners/
+
+sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/banners/
 
 // to remove laravel log
 php -r "file_put_contents('/var/www/luckym_thb_confirm_a/storage/logs/laravel.log', '');"

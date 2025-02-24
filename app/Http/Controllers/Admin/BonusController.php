@@ -18,7 +18,7 @@ class BonusController extends Controller
         $user = Auth::user();
         $agentIds = [$user->id];
 
-        if ($user->hasRole('Master')) {
+        if ($user->hasRole('Agent')) {
             $agentIds = User::where('agent_id', $user->id)->pluck('id')->toArray();
         }
 
@@ -44,7 +44,7 @@ class BonusController extends Controller
         $agent = Auth::user();
         $player = User::find($request->id);
 
-        if ($agent->hasRole('Master')) {
+        if ($agent->hasRole('Agent')) {
             $agent = User::where('id', $player->agent_id)->first();
         }
 
@@ -96,7 +96,7 @@ class BonusController extends Controller
 
     private function isPlayerUnderAgent(User $player, User $agent): bool
     {
-        if ($agent->hasRole('Master')) {
+        if ($agent->hasRole('Owner')) {
             return $player->parent->agent_id === $agent->id;
         }
 
