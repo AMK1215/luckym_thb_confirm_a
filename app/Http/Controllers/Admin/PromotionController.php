@@ -23,9 +23,9 @@ class PromotionController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $promotions = $auth->hasPermission('master_access') ?
-            Promotion::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $promotions = $auth->hasPermission('owner_access') ?
+            Promotion::query()->owner()->latest()->get() :
             Promotion::query()->agent()->latest()->get();
 
         return view('admin.promotions.index', compact('promotions'));
@@ -36,7 +36,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
 
         return view('admin.promotions.create');
     }
@@ -46,15 +46,15 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         // Validate the request
         $request->validate([
             'image' => 'required|image|max:2048', // Ensure it's an image with a size limit
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
         ]);
 
         $type = $request->type ?? 'single';
@@ -62,7 +62,7 @@ class PromotionController extends Controller
 
         $type = $request->type ?? 'single';
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $this->FeaturePermission($agentId);
             $promotion = Promotion::create([
                 'image' => $filename,
@@ -93,7 +93,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $promotion) {
             return redirect()->back()->with('error', 'Promotion Not Found');
         }
@@ -106,7 +106,7 @@ class PromotionController extends Controller
      */
     public function edit(Promotion $promotion)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $promotion) {
             return redirect()->back()->with('error', 'Promotion Not Found');
         }
@@ -119,9 +119,9 @@ class PromotionController extends Controller
      */
     public function update(Request $request, Promotion $promotion)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
         if (! $promotion) {
             return redirect()->back()->with('error', 'Promotion Not Found');
         }
@@ -131,7 +131,7 @@ class PromotionController extends Controller
         $this->UpdateData($request, $promotion);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $promotion->promotionAgents()->delete();
             PromotionAgent::create([
                 'agent_id' => $agentId,
@@ -154,7 +154,7 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $promotion) {
             return redirect()->back()->with('error', 'Promotion Not Found');
         }

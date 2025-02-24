@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum UserType: int
 {
-    case Senior = 10; // owner
-    case Owner = 20; // master
+    case Senior = 10; 
+    case Owner = 20;
     case Agent = 30;
     case Player = 40;
     case SystemWallet = 50;

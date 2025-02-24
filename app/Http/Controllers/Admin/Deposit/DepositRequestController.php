@@ -22,7 +22,7 @@ class DepositRequestController extends Controller
         $agentIds = [$user->id];
         $agents = [];
 
-        if ($user->hasRole('Master')) {
+        if ($user->hasRole('Owner')) {
             $agentIds = $this->getAgentIds($request, $user);
             $agents = $user->children()->get();
         }
@@ -54,7 +54,7 @@ class DepositRequestController extends Controller
             $agent = Auth::user();
             $player = User::find($request->player);
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
 

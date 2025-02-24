@@ -45,7 +45,7 @@ class Bank extends Model
         });
     }
 
-    public function scopeMaster($query)
+    public function scopeOwner($query)
     {
         $agents = User::find(auth()->user()->id)->agents()->pluck('id')->toArray();
 

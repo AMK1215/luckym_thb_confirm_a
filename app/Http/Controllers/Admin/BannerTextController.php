@@ -19,9 +19,9 @@ class BannerTextController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $texts = $auth->hasPermission('master_access') ?
-            BannerText::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $texts = $auth->hasPermission('owner_access') ?
+            BannerText::query()->owner()->latest()->get() :
             BannerText::query()->agent()->latest()->get();
 
         return view('admin.banner_text.index', compact('texts'));
@@ -32,7 +32,7 @@ class BannerTextController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
 
         return view('admin.banner_text.create');
     }
@@ -42,19 +42,19 @@ class BannerTextController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         // Validate the request
         $request->validate([
             'text' => 'required',
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
         ]);
         $type = $request->type ?? 'single';
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $this->FeaturePermission($agentId);
 
             $text = BannerText::create([
@@ -84,7 +84,7 @@ class BannerTextController extends Controller
      */
     public function show(BannerText $text)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $text) {
             return redirect()->back()->with('error', 'Banner Text Not Found');
         }
@@ -97,7 +97,7 @@ class BannerTextController extends Controller
      */
     public function edit(BannerText $text)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $text) {
             return redirect()->back()->with('error', 'Banner Text Not Found');
         }
@@ -110,9 +110,9 @@ class BannerTextController extends Controller
      */
     public function update(Request $request, BannerText $text)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         if (! $text) {
             return redirect()->back()->with('error', 'Banner Text Not Found');
@@ -124,7 +124,7 @@ class BannerTextController extends Controller
         $text->update($data);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $text->bankAgents()->delete();
             BannerTextAgent::create([
                 'agent_id' => $agentId,
@@ -147,7 +147,7 @@ class BannerTextController extends Controller
      */
     public function destroy(BannerText $text)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $text) {
             return redirect()->back()->with('error', 'Banner Text Not Found');
         }

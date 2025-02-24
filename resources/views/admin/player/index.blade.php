@@ -58,7 +58,7 @@
           <thead class="thead-light">
             <th>#</th>
             <th>PlayerID</th>
-            @can('master_access')
+            @can('owner_access')
             <th>AgentName</th>
             @endcan
             <th>Name</th>
@@ -78,7 +78,7 @@
               <td>
                 <span class="d-block">{{ $user->user_name }}</span>
               </td>
-              @can('master_access')
+              @can('owner_access')
               <td>{{$user->parent->name}}</td>
               @endcan
               <td>{{$user->name}}</td>

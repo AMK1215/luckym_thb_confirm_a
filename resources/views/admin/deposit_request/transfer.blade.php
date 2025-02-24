@@ -116,7 +116,7 @@
           <div class="row">
             <div class="col-md-6">
               <div class="input-group input-group-outline is-valid my-3">
-                <label class="form-label">Master Real Name</label>
+                <label class="form-label">Owner Real Name</label>
                 <input type="text" class="form-control" name="name" value="{{ $cash->user->name }}" readonly>
 
               </div>

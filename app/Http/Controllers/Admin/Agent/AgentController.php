@@ -65,9 +65,9 @@ class AgentController extends Controller
             Response::HTTP_FORBIDDEN,
             '403 Forbidden |You cannot  Access this page because you do not have permission'
         );
-        $master = Auth::user();
+        $owner = Auth::user();
         $inputs = $request->validated();
-        if (isset($inputs['amount']) && $inputs['amount'] > $master->balanceFloat) {
+        if (isset($inputs['amount']) && $inputs['amount'] > $owner->balanceFloat) {
             throw ValidationException::withMessages([
                 'amount' => 'Insufficient balance for transfer.',
             ]);
@@ -86,7 +86,7 @@ class AgentController extends Controller
         $agent->roles()->sync(self::AGENT_ROLE);
 
         if (isset($inputs['amount'])) {
-            app(WalletService::class)->transfer($master, $agent, $inputs['amount'], TransactionName::CreditTransfer, ['agent_id' => Auth::id()]);
+            app(WalletService::class)->transfer($owner, $agent, $inputs['amount'], TransactionName::CreditTransfer, ['agent_id' => Auth::id()]);
         }
 
         return redirect()->back()

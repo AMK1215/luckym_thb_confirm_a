@@ -22,9 +22,9 @@ class BannerController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $banners = $auth->hasPermission('master_access') ?
-            Banner::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $banners = $auth->hasPermission('owner_access') ?
+            Banner::query()->owner()->latest()->get() :
             Banner::query()->agent()->latest()->get();
 
         return view('admin.banners.index', compact('banners'));
@@ -35,7 +35,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
 
         return view('admin.banners.create');
     }
@@ -45,16 +45,16 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         // Validate the request
         $request->validate([
             'mobile_image' => 'required|image|max:2048', // Ensure it's an image with a size limit
             'desktop_image' => 'required|image|max:2048', // Ensure it's an image with a size limit
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
         ]);
 
         $type = $request->type ?? 'single';
@@ -62,7 +62,7 @@ class BannerController extends Controller
         $desktop_image = $this->handleImageUpload($request->desktop_image, 'banners');
 
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
 
             $banner = Banner::create([
                 'mobile_image' => $mobile_image,
@@ -93,7 +93,7 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $banner) {
             return redirect()->back()->with('error', 'Banner Not Found');
         }
@@ -107,7 +107,7 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $banner) {
             return redirect()->back()->with('error', 'Banner Not Found');
         }
@@ -120,9 +120,9 @@ class BannerController extends Controller
      */
     public function update(Request $request, Banner $banner)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         if (! $banner) {
             return redirect()->back()->with('error', 'Banner Not Found');
@@ -137,7 +137,7 @@ class BannerController extends Controller
         $this->UpdateData($request, $banner);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $banner->bannerAgents()->delete();
             BannerAgent::create([
                 'agent_id' => $agentId,
@@ -161,7 +161,7 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $banner) {
             return redirect()->back()->with('error', 'Banner Not Found');
         }

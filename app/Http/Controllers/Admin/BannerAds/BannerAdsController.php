@@ -24,9 +24,9 @@ class BannerAdsController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $banners = $auth->hasPermission('master_access') ?
-            BannerAds::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $banners = $auth->hasPermission('owner_access') ?
+            BannerAds::query()->owner()->latest()->get() :
             BannerAds::query()->agent()->latest()->get();
 
         return view('admin.banner_ads.index', compact('banners'));
@@ -37,7 +37,7 @@ class BannerAdsController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
 
         return view('admin.banner_ads.create');
     }
@@ -47,15 +47,15 @@ class BannerAdsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         $request->validate([
             'mobile_image' => 'required|image|max:2048', // Ensure it's an image with a size limit
             'desktop_image' => 'required|image|max:2048', // Ensure it's an image with a size limit
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
             'description' => 'nullable',
         ]);
         $type = $request->type ?? 'single';
@@ -63,7 +63,7 @@ class BannerAdsController extends Controller
         $desktop_image = $this->handleImageUpload($request->desktop_image, 'banners_ads');
 
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $bannerAds = BannerAds::create([
                 'mobile_image' => $mobile_image,
                 'desktop_image' => $desktop_image,
@@ -95,7 +95,7 @@ class BannerAdsController extends Controller
      */
     public function show(BannerAds $adsbanner)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $adsbanner) {
             return redirect()->back()->with('error', 'Ads Banner Not Found');
         }
@@ -111,7 +111,7 @@ class BannerAdsController extends Controller
     {
         $bannerAds = BannerAds::with('bannerAdsAgents')->where('id', $bannerAds)->first();
 
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $bannerAds) {
             return redirect()->back()->with('error', 'Ads Banner Not Found');
         }
@@ -121,9 +121,9 @@ class BannerAdsController extends Controller
 
     public function update(Request $request, $bannerAds)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
         $bannerAds = BannerAds::with('bannerAdsAgents')->where('id', $bannerAds)->first();
 
         if (! $bannerAds) {
@@ -140,7 +140,7 @@ class BannerAdsController extends Controller
         $this->UpdateData($request, $bannerAds);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $bannerAds->bannerAdsAgents()->delete();
             BannerAdsAgent::create([
                 'agent_id' => $agentId,
@@ -163,7 +163,7 @@ class BannerAdsController extends Controller
      */
     public function destroy($id)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $bannerAds = BannerAds::find($id);
 
         if (! $bannerAds) {

@@ -34,7 +34,7 @@
                   <label for="title">Description</label>
                   <textarea type="file" class="form-control" id="" name="description" style="border: 1px solid gray;"> {{$bannerAds->description}}</textarea>
                 </div>
-                @if(Auth::user()->hasRole('Master'))
+                @if(Auth::user()->hasRole('Owner'))
                   <div class="mb-3">
                     <div class="d-flex">
                       <div class="me-2 single" id="single">
