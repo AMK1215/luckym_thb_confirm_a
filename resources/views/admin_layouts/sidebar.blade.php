@@ -41,7 +41,7 @@
                 <span class="sidenav-normal  ms-2  ps-1"> V2-Win/lose Report </span>
             </a>
         </li>
-        @can('withdraw_requests')
+        @can('withdraw')
             <li class="nav-item">
                 <a class="nav-link text-white " href="{{ route('admin.agent.withdraw') }}">
                     <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
@@ -49,7 +49,7 @@
                 </a>
             </li>
         @endcan
-        @can('deposit_requests')
+        @can('deposit')
             <li class="nav-item">
                 <a class="nav-link text-white " href="{{ route('admin.agent.deposit') }}">
                     <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
