@@ -13,9 +13,9 @@ sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
 sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
 sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/banners_ads/
 
-sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/Deposit/
+sudo chown -R www-data:www-data /var/www/luckym_thb_confirm_a/public/assets/img/deposit/
 
-sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/Deposit/
+sudo chmod -R 775 /var/www/luckym_thb_confirm_a/public/assets/img/deposit/
 
 // to remove laravel log
 php -r "file_put_contents('/var/www/luckym_thb_confirm_a/storage/logs/laravel.log', '');"

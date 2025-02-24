@@ -13,6 +13,15 @@
                 <span class="sidenav-normal  ms-2  ps-1"> Profile </span>
             </a>
         </li>
+
+        @can('senior_access')
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.daily_summaries.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">OperatorDaily W/L Report</span>
+                </a>
+            </li>
+        @endcan
         <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.report.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
