@@ -39,10 +39,10 @@ class RewardController extends Controller
                 // Validate signature
                 $signature = $this->generateSignature($transaction);
                 if ($signature !== $transaction['Signature']) {
-                    // Log::warning('Signature validation failed', [
-                    //     'transaction' => $transaction,
-                    //     'generated_signature' => $signature,
-                    // ]);
+                    Log::warning('Signature validation failed', [
+                        'transaction' => $transaction,
+                        'generated_signature' => $signature,
+                    ]);
 
                     return $this->buildErrorResponse(StatusCode::InvalidSignature);
                 }
