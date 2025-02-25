@@ -85,7 +85,9 @@
                                     <input type="date" name="end_date" id="end_date" class="form-control">
                                 </div>
                             </div>
-                            <button type="submit">Filter</button>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+                            </div>
                         </div>
                     </form>
                 </div>
