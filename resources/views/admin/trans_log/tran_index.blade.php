@@ -61,28 +61,27 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <div class="card-body">
-                        <h5 class="mb-0">Find By PlayerID Transaction Logs</h5>
-
-
-                        <!-- Form to filter transactions -->
-                        <form action="{{ route('admin.tran_user_log') }}" method="GET">
-                            <div>
-                                <label for="user_name">User Name:</label>
-                                <input type="text" name="user_name" id="user_name" required class="form-control">
-                            </div>
-                            <div>
-                                <label for="start_date">Start Date:</label>
-                                <input type="date" name="start_date" id="start_date" class="form-control">
-                            </div>
-                            <div>
-                                <label for="end_date">End Date:</label>
-                                <input type="date" name="end_date" id="end_date" class="form-control">
-                            </div>
-                            <button type="submit">Filter</button>
-                        </form>
-                    </div>
+                    <h5 class="mb-0">Find By PlayerID Transaction Logs</h5>
                 </div>
+                <div class="card-body">
+                    <!-- Form to filter transactions -->
+                    <form action="{{ route('admin.tran_user_log') }}" method="GET">
+                        <div>
+                            <label for="user_name">User Name:</label>
+                            <input type="text" name="user_name" id="user_name" required class="form-control">
+                        </div>
+                        <div>
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control">
+                        </div>
+                        <div>
+                            <label for="end_date">End Date:</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control">
+                        </div>
+                        <button type="submit">Filter</button>
+                    </form>
+                </div>
+
                 <div class="table-responsive">
                     @if (isset($transactions))
                         <table class="table table-flush" id="users-search">
