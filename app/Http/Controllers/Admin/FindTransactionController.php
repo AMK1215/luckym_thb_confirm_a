@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Carbon\Carbon; // For date handling
 class FindTransactionController extends Controller
 {
+    public function index()
+    {
+        return view('admin.trans_log.tran_index');
+    }
 
     public function getUserTransactions(Request $request)
     {

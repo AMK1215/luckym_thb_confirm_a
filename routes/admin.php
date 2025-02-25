@@ -160,4 +160,6 @@ Route::group([
 
     Route::get('usertranlogs', [FindTransactionController::class, 'getUserTransactions'])->name('tran_user_log');
 
+     Route::get('findusertrand', [FindTransactionController::class, 'getUserTransactions'])->name('tran_user_log_index');
+
 });
