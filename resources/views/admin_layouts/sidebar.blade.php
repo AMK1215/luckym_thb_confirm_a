@@ -23,7 +23,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ route('admin.tran_user_log.index') }}">
+                <a class="nav-link text-white " href="{{ route('admin.tran_user_log') }}">
                     <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1">FindTranLog</span>
                 </a>
