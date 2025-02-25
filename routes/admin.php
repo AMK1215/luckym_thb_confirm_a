@@ -30,6 +30,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReportV2Controller;
 use App\Http\Controllers\ResultArchiveController;
 use App\Http\Controllers\Admin\DailySummaryController;
+use App\Http\Controllers\Admin\FindTransactionController;
 
 
 use App\Models\Admin\Role;
@@ -156,5 +157,7 @@ Route::group([
     Route::get('get-bet-detail/{wagerId}', [GetBetDetailController::class, 'getBetDetail'])->name('getBetDetail.show');
 
     Route::get('/daily-summaries', [DailySummaryController::class, 'index'])->name('daily_summaries.index');
+
+    Route::get('/user-transactions', [FindTransactionController::class, 'getUserTransactions'])->name('user_transactions');
 
 });

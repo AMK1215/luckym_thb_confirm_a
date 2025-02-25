@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test Game Request</title>
+    </head>
+    <body>
+        <p>Test</p>
+
+        <script>
+            const url = "https://2109custom.dtnidgaj.click/gs2c/html5Game.do";
+            const headers = {
+                "Content-Type": "application/json",
+                Authorization:
+                    "$2y$12$t7ZqoFCvOZztFZlmItoZpeMqBzrfCS/347Avko7p.WPolcqM4No3C", // Replace with a valid token
+            };
+            const data = {
+                jackpotid: 0,
+                gname: "Gates of Olympus",
+                extGame: 1,
+                ext: 0,
+                cb_target: "exist_tab",
+                symbol: "vs20olympgate",
+                jurisdictionID: 99,
+                minilobby: false,
+                mgckey: "AUTHTOKEN@7b82789a62f09d0706f7ac872e67c803cfd33c5b1a709b4fdf5773e5784533ad~stylename@sltsmkr_slotsmaker~SESSION@4deeff59-09d8-4307-aa26-f4fa203032c5~SN@c47e4d5c",
+
+                tabName: "Gates of Olympus",
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! Status: ${response.status}`
+                        );
+                    }
+                    return response.text(); // Use .text() instead of .json() if the response is not JSON
+                })
+                .then((data) => {
+                    console.log("Response:", data);
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                });
+        </script>
+    </body>
+</html>
+
+<!-- https://2109custom.dtnidgaj.click/gs2c/html5Game.do?jackpotid=0&gname=Gates%20of%20Olympus&extGame=1&ext=0&cb_target=exist_tab&symbol=vs20olympgate&jurisdictionID=99&minilobby=false&mgckey=AUTHTOKEN@9ae5e5c003f8ea445689c32805592fb227ef9c8f63b1156808944b9029531292~stylename@sltsmkr_slotsmaker~SESSION@ce767104-9da4-4206-9b25-ae5eacbac3fc~SN@9df9cc4e&tabName=
+
+
+ mgckey: "AUTHTOKEN@318d636c3b205936ba37d103ed2e1ece2c5526f018d06588f25ab114be11a564~stylename@sltsmkr_slotsmaker~SESSION@39fb37ce-a373-45f2-9775-fccd04031a95~SN@8c70f499", -->
