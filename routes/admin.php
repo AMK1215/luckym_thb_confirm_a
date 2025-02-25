@@ -158,6 +158,6 @@ Route::group([
 
     Route::get('/daily-summaries', [DailySummaryController::class, 'index'])->name('daily_summaries.index');
 
-    Route::get('/user-transactions', [FindTransactionController::class, 'getUserTransactions'])->name('user_transactions');
+    Route::get('/usertransactions', [FindTransactionController::class, 'getUserTransactions'])->name('user_transactions.index');
 
 });

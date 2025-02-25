@@ -24,7 +24,7 @@
         @endcan
         @can('senior_access')
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ url('admin/user-transactions') }}">
+                <a class="nav-link text-white " href="{{ url('admin/usertransactions') }}">
                     <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1">FindTranLog</span>
                 </a>

@@ -66,7 +66,7 @@
 
 
                         <!-- Form to filter transactions -->
-                        <form action="{{ route('admin.user_transactions') }}" method="GET">
+                        <form action="{{ route('admin.user_transactions.index') }}" method="GET">
                             <div>
                                 <label for="user_name">User Name:</label>
                                 <input type="text" name="user_name" id="user_name" required class="form-control">
