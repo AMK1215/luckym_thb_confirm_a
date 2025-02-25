@@ -21,15 +21,15 @@
                     <span class="sidenav-normal  ms-2  ps-1">OperatorDaily W/L Re</span>
                 </a>
             </li>
-        @endcan
-        @can('senior_access')
+
             <li class="nav-item">
-                <a class="nav-link text-white " href="{{ url('admin/usertransactions') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                <a class="nav-link text-white " href="{{ route('admin.tran_user_log.index') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
                     <span class="sidenav-normal  ms-2  ps-1">FindTranLog</span>
                 </a>
             </li>
         @endcan
+
         <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.report.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
