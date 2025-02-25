@@ -22,6 +22,14 @@
                 </a>
             </li>
         @endcan
+        @can('senior_access')
+            <li class="nav-item">
+                <a class="nav-link text-white " href="{{ route('admin.user_transactions') }}">
+                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
+                    <span class="sidenav-normal  ms-2  ps-1">FindTranLog</span>
+                </a>
+            </li>
+        @endcan
         <li class="nav-item">
             <a class="nav-link text-white " href="{{ route('admin.report.index') }}">
                 <span class="sidenav-mini-icon"> <i class="fa-solid fa-chart-column"></i> </span>
