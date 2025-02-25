@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon; // For date handling
 class FindTransactionController extends Controller
 {
-     public function getUserTransactions(Request $request)
+
+    public function getUserTransactions(Request $request)
     {
         // Validate the request
         $request->validate([
