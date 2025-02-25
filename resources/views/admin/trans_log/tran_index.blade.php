@@ -62,7 +62,7 @@
             <div class="card">
                 <div class="card-header pb-0">
                     <div class="card-body">
-                        <h5 class="mb-0">Transaction Logs</h5>
+                        <h5 class="mb-0">Find By PlayerID Transaction Logs</h5>
 
 
                         <!-- Form to filter transactions -->
