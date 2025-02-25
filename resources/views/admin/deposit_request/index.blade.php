@@ -18,7 +18,7 @@
                 <input type="text" class="form-control" name="player_id" value="{{request()->player_id}}">
               </div>
             </div>
-            @can('master_access')
+            @can('owner_access')
             <div class="col-md-3">
               <div class="input-group input-group-static mb-4">
                 <label for="">AgentId</label>

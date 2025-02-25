@@ -94,7 +94,7 @@
                     <span class="text-danger">*{{ $message }}</span>
                   @enderror
                 </div>
-                @if(Auth::user()->hasRole('Master'))
+                @if(Auth::user()->hasRole('Owner'))
                 <div class="mb-3">
                   <div class="d-flex">
                     <div class="me-2">

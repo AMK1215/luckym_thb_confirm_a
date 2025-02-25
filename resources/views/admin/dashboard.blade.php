@@ -29,8 +29,8 @@
                     </div>
                     @if (auth()->user()->hasRole('Owner'))
                         <div class="text-end pt-1">
-                            <p class="text-sm mb-0 text-capitalize ">Master</p>
-                            <h4 class="mb-0 ">{{ $master_count }}</h4>
+                            <p class="text-sm mb-0 text-capitalize ">Owner</p>
+                            <h4 class="mb-0 ">{{ $owner_count }}</h4>
                         </div>
                     @else
                         <div class="text-end pt-1">

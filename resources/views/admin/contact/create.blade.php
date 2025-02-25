@@ -32,7 +32,7 @@
                     @endforeach
                   </select>
                 </div>
-                @if(Auth::user()->hasRole('Master'))
+                @if(Auth::user()->hasRole('Owner'))
                 <div class="mb-3">
                   <div class="d-flex">
                     <div class="me-2">
@@ -71,7 +71,6 @@
                   @error('agent_id')
                   <span class="text-danger">*{{ $message }}</span>
                   @enderror
-                  {{-- <input type="file" class="form-control" id="inputEmail3" name="image"> --}}
                 </div>
                 @endif
                 <div class="custom-form-group">

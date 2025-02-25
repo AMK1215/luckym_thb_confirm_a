@@ -21,7 +21,7 @@ class WithDrawRequestController extends Controller
         $user = Auth::user();
         $agentIds = [$user->id];
         $agents = [];
-        if ($user->hasRole('Master')) {
+        if ($user->hasRole('Owner')) {
             $agentIds = $this->getAgentIds($request, $user);
             $agents = $user->children()->get();
         }
@@ -52,7 +52,7 @@ class WithDrawRequestController extends Controller
             $agent = Auth::user();
             $player = User::find($request->player);
 
-            if ($agent->hasRole('Master')) {
+            if ($agent->hasRole('Owner')) {
                 $agent = User::where('id', $player->agent_id)->first();
             }
 

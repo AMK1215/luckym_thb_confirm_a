@@ -20,9 +20,9 @@ class BankController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $banks = $auth->hasPermission('master_access') ?
-            Bank::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $banks = $auth->hasPermission('owner_access') ?
+            Bank::query()->owner()->latest()->get() :
             Bank::query()->agent()->latest()->get();
 
         return view('admin.banks.index', compact('banks'));
@@ -33,7 +33,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $payment_types = PaymentType::all();
 
         return view('admin.banks.create', compact('payment_types'));
@@ -44,22 +44,22 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         // Validate the request
         $request->validate([
             'account_name' => 'required',
             'account_number' => 'required|numeric',
             'payment_type_id' => 'required|exists:payment_types,id',
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
         ]);
 
         $type = $request->type ?? 'single';
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $this->FeaturePermission($agentId);
             $bank = Bank::create([
                 'account_name' => $request->account_name,
@@ -99,7 +99,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $bank) {
             return redirect()->back()->with('error', 'Bank Not Found');
         }
@@ -113,9 +113,9 @@ class BankController extends Controller
      */
     public function update(Request $request, Bank $bank)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
         if (! $bank) {
             return redirect()->back()->with('error', 'Bank Not Found');
         }
@@ -127,7 +127,7 @@ class BankController extends Controller
         $bank->update($data);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $bank->bankAgents()->delete();
             BankAgent::create([
                 'agent_id' => $agentId,
@@ -150,7 +150,7 @@ class BankController extends Controller
      */
     public function destroy(Bank $bank)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $bank) {
             return redirect()->back()->with('error', 'Bank Not Found');
         }

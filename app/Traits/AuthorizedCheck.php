@@ -19,12 +19,12 @@ trait AuthorizedCheck
         }
     }
 
-    protected function MasterAgentRoleCheck()
+    protected function OwnerAgentRoleCheck()
     {
         $user = Auth::user();
-        $master_access = $user->hasPermission('master_access');
+        $owner_access = $user->hasPermission('owner_access');
         $agent_access = $user->hasPermission('agent_access');
-        if ($master_access || $agent_access) {
+        if ($owner_access || $agent_access) {
             return true;
         } else {
             abort(403, 'Unauthorized');

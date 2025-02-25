@@ -37,8 +37,8 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $isAdmin = $user->hasRole('Owner');
-        $isMaster = $user->hasRole('Master');
+        $isAdmin = $user->hasRole('Senior');
+        $isOwner = $user->hasRole('Owner');
 
         $getUserCounts = function ($roleTitle) use ($isAdmin, $user) {
             return User::whereHas('roles', function ($query) use ($roleTitle) {
@@ -49,12 +49,12 @@ class HomeController extends Controller
                 ->count();
         };
 
-        $master_count = $getUserCounts('Master');
+        $owner_count = $getUserCounts('Owner');
         $agent_count = $getUserCounts('Agent');
         $player_count = $getUserCounts('Player');
 
         return view('admin.dashboard', compact(
-            'master_count',
+            'owner_count',
             'agent_count',
             'player_count',
             'user'

@@ -18,15 +18,7 @@
             <li class="nav-item">
                 <a class="nav-link text-white " href="{{ route('admin.daily_summaries.index') }}">
                     <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1">OperatorDaily W/L Report</span>
-                </a>
-            </li>
-        @endcan
-        @can('senior_access')
-            <li class="nav-item">
-                <a class="nav-link text-white " href="{{ route('admin.user_transactions') }}">
-                    <span class="sidenav-mini-icon"> <i class="fa-solid fa-user"></i> </span>
-                    <span class="sidenav-normal  ms-2  ps-1">FindTranLog</span>
+                    <span class="sidenav-normal  ms-2  ps-1">OperatorDaily W/L Re</span>
                 </a>
             </li>
         @endcan

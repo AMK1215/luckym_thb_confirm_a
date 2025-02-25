@@ -20,9 +20,9 @@ class ContactController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        $this->MasterAgentRoleCheck();
-        $contacts = $auth->hasPermission('master_access') ?
-            Contact::query()->master()->latest()->get() :
+        $this->OwnerAgentRoleCheck();
+        $contacts = $auth->hasPermission('owner_access') ?
+            Contact::query()->owner()->latest()->get() :
             Contact::query()->agent()->latest()->get();
 
         return view('admin.contact.index', compact('contacts'));
@@ -33,7 +33,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $contact_types = ContactType::all();
 
         return view('admin.contact.create', compact('contact_types'));
@@ -44,20 +44,20 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         $request->validate([
             'link' => 'required',
             'contact_type_id' => 'required|exists:contact_types,id',
-            'type' => $isMaster ? 'required' : 'nullable',
-            'agent_id' => ($isMaster && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
+            'type' => $isOwner ? 'required' : 'nullable',
+            'agent_id' => ($isOwner && $request->type === 'single') ? 'required|exists:users,id' : 'nullable',
         ]);
 
         $type = $request->type ?? 'single';
         if ($type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $this->FeaturePermission($agentId);
             $contact = Contact::create([
                 'link' => $request->link,
@@ -96,7 +96,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $contact_types = ContactType::all();
         if (! $contact) {
             return redirect()->back()->with('error', 'Contact Not Found');
@@ -110,9 +110,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         $user = Auth::user();
-        $isMaster = $user->hasRole('Master');
+        $isOwner = $user->hasRole('Owner');
 
         if (! $contact) {
             return redirect()->back()->with('error', 'Banner Text Not Found');
@@ -126,13 +126,12 @@ class ContactController extends Controller
         $contact->update($data);
 
         if ($request->type === 'single') {
-            $agentId = $isMaster ? $request->agent_id : $user->id;
+            $agentId = $isOwner ? $request->agent_id : $user->id;
             $contact->contactAgents()->delete();
             ContactAgent::create([
                 'agent_id' => $agentId,
                 'contact_id' => $contact->id,
             ]);
-
         } elseif ($request->type === 'all') {
             foreach ($user->agents as $agent) {
                 $contact->contactAgents()->updateOrCreate(
@@ -150,7 +149,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        $this->MasterAgentRoleCheck();
+        $this->OwnerAgentRoleCheck();
         if (! $contact) {
             return redirect()->back()->with('error', 'Contact Not Found');
         }
