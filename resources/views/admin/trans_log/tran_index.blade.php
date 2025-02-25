@@ -66,19 +66,27 @@
                 <div class="card-body">
                     <!-- Form to filter transactions -->
                     <form action="{{ route('admin.tran_user_log') }}" method="GET">
-                        <div>
-                            <label for="user_name">User Name:</label>
-                            <input type="text" name="user_name" id="user_name" required class="form-control">
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <div class="input-group input-group-static mb-4">
+                                    <label for="user_name">User Name:</label>
+                                    <input type="text" name="user_name" id="user_name" required class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group input-group-static mb-4">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" name="start_date" id="start_date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group input-group-static mb-4">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" name="end_date" id="end_date" class="form-control">
+                                </div>
+                            </div>
+                            <button type="submit">Filter</button>
                         </div>
-                        <div>
-                            <label for="start_date">Start Date:</label>
-                            <input type="date" name="start_date" id="start_date" class="form-control">
-                        </div>
-                        <div>
-                            <label for="end_date">End Date:</label>
-                            <input type="date" name="end_date" id="end_date" class="form-control">
-                        </div>
-                        <button type="submit">Filter</button>
                     </form>
                 </div>
 
