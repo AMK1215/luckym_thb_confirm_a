@@ -69,15 +69,15 @@
                         <form action="{{ route('admin.user_transactions') }}" method="GET">
                             <div>
                                 <label for="user_name">User Name:</label>
-                                <input type="text" name="user_name" id="user_name" required>
+                                <input type="text" name="user_name" id="user_name" required class="form-control">
                             </div>
                             <div>
                                 <label for="start_date">Start Date:</label>
-                                <input type="date" name="start_date" id="start_date">
+                                <input type="date" name="start_date" id="start_date" class="form-control">
                             </div>
                             <div>
                                 <label for="end_date">End Date:</label>
-                                <input type="date" name="end_date" id="end_date">
+                                <input type="date" name="end_date" id="end_date" class="form-control">
                             </div>
                             <button type="submit">Filter</button>
                         </form>
