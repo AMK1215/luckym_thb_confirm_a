@@ -9,9 +9,9 @@ trait AuthorizedCheck
     protected function FeaturePermission($agentId)
     {
         $user = Auth::user();
-        $master = $user->hasRole('Master');
+        $owner = $user->hasRole('Owner');
 
-        $isAuthorized = $master ? in_array($agentId, $user->agents()->pluck('id')->toArray()) : $user->id === $agentId;
+        $isAuthorized = $owner ? in_array($agentId, $user->agents()->pluck('id')->toArray()) : $user->id === $agentId;
         if ($isAuthorized) {
             return true;
         } else {
