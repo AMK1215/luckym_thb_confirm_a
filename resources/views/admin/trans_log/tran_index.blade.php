@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    @if (isset($transactions))
+                    {{-- @if (isset($transactions))
                         <table class="table table-flush" id="users-search">
                             <thead class="thead-light">
 
@@ -111,7 +111,7 @@
                                     <tr>
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->type }}</td>
-                                        {{-- <td>{{ $transaction->amount }}</td> --}}
+
                                         <td>{{ number_format($transaction->amount / 100, 2) }}</td>
                                         <td>{{ $transaction->confirmed ? 'Yes' : 'No' }}</td>
                                         <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
@@ -121,7 +121,39 @@
                         </table>
                     @else
                         <p>No transactions found.</p>
+                    @endif --}}
+
+                    @if (isset($transactions) && $transactions->count() > 0)
+                        <table class="table table-flush" id="users-search">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Confirmed</th>
+                                    <th>Game Name</th>
+                                    <th>Provider Name</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($transactions as $transaction)
+                                    <tr>
+                                        <td>{{ $transaction->id }}</td>
+                                        <td>{{ $transaction->type }}</td>
+                                        <td>{{ number_format($transaction->amount / 100, 2) }}</td>
+                                        <td>{{ $transaction->confirmed ? 'Yes' : 'No' }}</td>
+                                        <td>{{ $transaction->game_name ?? 'N/A' }}</td>
+                                        <td>{{ $transaction->game_provide_name ?? 'N/A' }}</td>
+                                        <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p>No transactions found.</p>
                     @endif
+
                 </div>
             </div>
         </div>
