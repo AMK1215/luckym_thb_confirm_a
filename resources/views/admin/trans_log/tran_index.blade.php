@@ -111,7 +111,8 @@
                                     <tr>
                                         <td>{{ $transaction->id }}</td>
                                         <td>{{ $transaction->type }}</td>
-                                        <td>{{ $transaction->amount }}</td>
+                                        {{-- <td>{{ $transaction->amount }}</td> --}}
+                                        <td>{{ number_format($transaction->amount / 100, 2) }}</td>
                                         <td>{{ $transaction->confirmed ? 'Yes' : 'No' }}</td>
                                         <td>{{ $transaction->created_at->format('Y-m-d H:i:s') }}</td>
                                     </tr>
