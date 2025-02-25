@@ -38,7 +38,8 @@ class FindTransactionController extends Controller
         // Start building the query
         $query = Transaction::where('payable_type', User::class)
             ->where('payable_id', $user->id)
-            ->whereIn('type', ['deposit', 'withdraw']);
+            ->whereIn('name', ['stake', 'payout']);
+            // ->whereIn('type', ['deposit', 'withdraw']);
 
         // Add date filters if provided
         if ($startDate) {
